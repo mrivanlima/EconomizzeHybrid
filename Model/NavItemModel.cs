@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EconomizzeHybrid.Model
 {
-    public class NavItem
+    public class NavItemModel
     {
         public string Text { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
