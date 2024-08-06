@@ -80,7 +80,7 @@
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAlAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-06T02:14:20.683Z",
               "EditorCaption": ""
@@ -95,7 +95,8 @@
               "RelativeToolTip": "Services\\Interfaces\\IUserServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:10:28.773Z"
+              "WhenOpened": "2024-08-06T02:10:28.773Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -107,7 +108,8 @@
               "RelativeToolTip": "Services\\Interfaces\\IUserLoginServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:10:03.753Z"
+              "WhenOpened": "2024-08-06T02:10:03.753Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -119,7 +121,8 @@
               "RelativeToolTip": "MauiProgram.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAgwCMAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:09:28.691Z"
+              "WhenOpened": "2024-08-06T02:09:28.691Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -129,9 +132,10 @@
               "RelativeDocumentMoniker": "Model\\UserModel.cs",
               "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Model\\UserModel.cs",
               "RelativeToolTip": "Model\\UserModel.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:08:29.908Z"
+              "WhenOpened": "2024-08-06T02:08:29.908Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -143,7 +147,8 @@
               "RelativeToolTip": "Services\\Classes\\UserLoginServices.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAAcwDsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:06:07.318Z"
+              "WhenOpened": "2024-08-06T02:06:07.318Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -155,7 +160,8 @@
               "RelativeToolTip": "Services\\Classes\\UserServices.cs",
               "ViewState": "AQIAABcAAAAAAAAAAAArwCwAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:05:39.511Z"
+              "WhenOpened": "2024-08-06T02:05:39.511Z",
+              "EditorCaption": ""
             }
           ]
         }

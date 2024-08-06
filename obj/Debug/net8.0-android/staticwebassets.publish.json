@@ -1,31 +1,12 @@
 {
   "Version": 1,
-  "Hash": "rLgprmv6paoBOXljM7lnoZ/1Uwtxva9/uHjyARz4HhY=",
+  "Hash": "zqjxSC/1kVbU3S7twJAVHYA/dlnmrWqJBgSmdRWKBME=",
   "Source": "EconomizzeHybrid",
   "BasePath": "/",
   "Mode": "Root",
   "ManifestType": "Publish",
-  "ReferencedProjectsConfiguration": [
-    {
-      "Identity": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\EconomizzeComponents.csproj",
-      "Version": 2,
-      "Source": "EconomizzeComponents",
-      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
-      "AdditionalPublishProperties": "",
-      "AdditionalPublishPropertiesToRemove": "Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained",
-      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
-      "AdditionalBuildProperties": "",
-      "AdditionalBuildPropertiesToRemove": "Configuration;Platform;TargetFramework;RuntimeIdentifier;SelfContained"
-    }
-  ],
+  "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
-    {
-      "Name": "EconomizzeComponents\\wwwroot",
-      "Source": "EconomizzeComponents",
-      "ContentRoot": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\wwwroot\\",
-      "BasePath": "_content/EconomizzeComponents",
-      "Pattern": "**"
-    },
     {
       "Name": "EconomizzeHybrid\\wwwroot",
       "Source": "EconomizzeHybrid",
@@ -35,63 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\EconomizzeComponents.bundle.scp.css",
-      "SourceId": "EconomizzeComponents",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
-      "BasePath": "_content/EconomizzeComponents",
-      "RelativePath": "EconomizzeComponents.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\EconomizzeComponents.bundle.scp.css"
-    },
-    {
-      "Identity": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\wwwroot\\background.png",
-      "SourceId": "EconomizzeComponents",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\wwwroot\\",
-      "BasePath": "_content/EconomizzeComponents",
-      "RelativePath": "background.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\background.png"
-    },
-    {
-      "Identity": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\wwwroot\\exampleJsInterop.js",
-      "SourceId": "EconomizzeComponents",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Development\\EconomizzeComponents\\EconomizzeComponents\\wwwroot\\",
-      "BasePath": "_content/EconomizzeComponents",
-      "RelativePath": "exampleJsInterop.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
-    },
     {
       "Identity": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\obj\\Debug\\net8.0-android\\scopedcss\\bundle\\EconomizzeHybrid.styles.css",
       "SourceId": "EconomizzeHybrid",

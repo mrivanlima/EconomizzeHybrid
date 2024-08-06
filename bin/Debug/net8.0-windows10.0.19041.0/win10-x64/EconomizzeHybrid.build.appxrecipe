@@ -40,12 +40,6 @@
     <AppxPackagedFile Include="C:\Development\EconomizzeHybrid\EconomizzeHybrid\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeComponents\EconomizzeComponents\wwwroot\background.png">
-      <PackagePath>wwwroot\_content\EconomizzeComponents\background.png</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeComponents\EconomizzeComponents\wwwroot\exampleJsInterop.js">
-      <PackagePath>wwwroot\_content\EconomizzeComponents\exampleJsInterop.js</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Development\EconomizzeHybrid\EconomizzeHybrid\wwwroot\css\app.css">
       <PackagePath>wwwroot\css\app.css</PackagePath>
     </AppxPackagedFile>
@@ -241,16 +235,16 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.31\lib\net6.0\WinRT.Runtime.dll">
       <PackagePath>WinRT.Runtime.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.authorization\8.0.5\lib\net8.0\Microsoft.AspNetCore.Authorization.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.authorization\8.0.0\lib\net8.0\Microsoft.AspNetCore.Authorization.dll">
       <PackagePath>Microsoft.AspNetCore.Authorization.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components\8.0.5\lib\net8.0\Microsoft.AspNetCore.Components.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components\8.0.0\lib\net8.0\Microsoft.AspNetCore.Components.dll">
       <PackagePath>Microsoft.AspNetCore.Components.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.forms\8.0.5\lib\net8.0\Microsoft.AspNetCore.Components.Forms.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.forms\8.0.0\lib\net8.0\Microsoft.AspNetCore.Components.Forms.dll">
       <PackagePath>Microsoft.AspNetCore.Components.Forms.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.web\8.0.5\lib\net8.0\Microsoft.AspNetCore.Components.Web.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.web\8.0.0\lib\net8.0\Microsoft.AspNetCore.Components.Web.dll">
       <PackagePath>Microsoft.AspNetCore.Components.Web.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.webview\8.0.0\lib\net8.0\Microsoft.AspNetCore.Components.WebView.dll">
@@ -259,7 +253,7 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.components.webview.maui\8.0.21\lib\net8.0-windows10.0.19041\Microsoft.AspNetCore.Components.WebView.Maui.dll">
       <PackagePath>Microsoft.AspNetCore.Components.WebView.Maui.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.metadata\8.0.5\lib\net8.0\Microsoft.AspNetCore.Metadata.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.aspnetcore.metadata\8.0.0\lib\net8.0\Microsoft.AspNetCore.Metadata.dll">
       <PackagePath>Microsoft.AspNetCore.Metadata.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.configuration\8.0.0\lib\net8.0\Microsoft.Extensions.Configuration.dll">
@@ -280,7 +274,7 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.dependencyinjection\8.0.0\lib\net8.0\Microsoft.Extensions.DependencyInjection.dll">
       <PackagePath>Microsoft.Extensions.DependencyInjection.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\8.0.1\lib\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\8.0.0\lib\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll">
       <PackagePath>Microsoft.Extensions.DependencyInjection.Abstractions.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.diagnostics\8.0.0\lib\net8.0\Microsoft.Extensions.Diagnostics.dll">
@@ -310,13 +304,13 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.logging\8.0.0\lib\net8.0\Microsoft.Extensions.Logging.dll">
       <PackagePath>Microsoft.Extensions.Logging.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.logging.abstractions\8.0.1\lib\net8.0\Microsoft.Extensions.Logging.Abstractions.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.logging.abstractions\8.0.0\lib\net8.0\Microsoft.Extensions.Logging.Abstractions.dll">
       <PackagePath>Microsoft.Extensions.Logging.Abstractions.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.logging.debug\8.0.0\lib\net8.0\Microsoft.Extensions.Logging.Debug.dll">
       <PackagePath>Microsoft.Extensions.Logging.Debug.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.options\8.0.2\lib\net8.0\Microsoft.Extensions.Options.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.options\8.0.0\lib\net8.0\Microsoft.Extensions.Options.dll">
       <PackagePath>Microsoft.Extensions.Options.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.extensions.options.configurationextensions\8.0.0\lib\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll">
@@ -328,7 +322,7 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.graphics.win2d\1.2.0\lib\net6.0-windows10.0.19041.0\Microsoft.Graphics.Canvas.Interop.dll">
       <PackagePath>Microsoft.Graphics.Canvas.Interop.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.jsinterop\8.0.5\lib\net8.0\Microsoft.JSInterop.dll">
+    <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.jsinterop\8.0.0\lib\net8.0\Microsoft.JSInterop.dll">
       <PackagePath>Microsoft.JSInterop.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.maui.controls.compatibility\8.0.21\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.dll">
@@ -508,15 +502,6 @@
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.windowsappsdk\1.5.240311000\runtimes\win10-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll">
       <PackagePath>Microsoft.WindowsAppRuntime.Bootstrap.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeComponents\EconomizzeComponents\bin\Debug\net8.0\EconomizzeComponents.dll">
-      <PackagePath>EconomizzeComponents.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeShared\EconomizzeShared\bin\Debug\net8.0\EconomizzeShared.dll">
-      <PackagePath>EconomizzeShared.dll</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeComponents\EconomizzeComponents\obj\Debug\net8.0\staticwebassets.development.json">
-      <PackagePath>EconomizzeComponents.staticwebassets.runtime.json</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.maui.controls.compatibility\8.0.21\lib\net8.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>
     </AppxPackagedFile>
@@ -525,9 +510,6 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\mriva\.nuget\packages\microsoft.maui.core\8.0.21\lib\net8.0-windows10.0.19041\Microsoft.Maui.pri">
       <PackagePath>Microsoft.Maui.pri</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Development\EconomizzeComponents\EconomizzeComponents\obj\Debug\net8.0\scopedcss\projectbundle\EconomizzeComponents.bundle.scp.css">
-      <PackagePath>wwwroot\_content\EconomizzeComponents\EconomizzeComponents.bundle.scp.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\scopedcss\bundle\EconomizzeHybrid.styles.css">
       <PackagePath>wwwroot\EconomizzeHybrid.styles.css</PackagePath>
