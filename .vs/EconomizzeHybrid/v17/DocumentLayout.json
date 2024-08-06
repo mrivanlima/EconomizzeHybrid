@@ -95,8 +95,7 @@
               "RelativeToolTip": "Services\\Interfaces\\IUserServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:10:28.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:10:28.773Z"
             },
             {
               "$type": "Document",
@@ -108,8 +107,7 @@
               "RelativeToolTip": "Services\\Interfaces\\IUserLoginServices.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:10:03.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:10:03.753Z"
             },
             {
               "$type": "Document",
@@ -121,8 +119,7 @@
               "RelativeToolTip": "MauiProgram.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAgwCMAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:09:28.691Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:09:28.691Z"
             },
             {
               "$type": "Document",
@@ -134,8 +131,7 @@
               "RelativeToolTip": "Model\\UserModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAIBJwAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:08:29.908Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:08:29.908Z"
             },
             {
               "$type": "Document",
@@ -147,8 +143,7 @@
               "RelativeToolTip": "Services\\Classes\\UserLoginServices.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAcwD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:06:07.318Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:06:07.318Z"
             },
             {
               "$type": "Document",
@@ -160,8 +155,7 @@
               "RelativeToolTip": "Services\\Classes\\UserServices.cs",
               "ViewState": "AQIAABcAAAAAAAAAAAArwCwAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T02:05:39.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-06T02:05:39.511Z"
             }
           ]
         }
