@@ -10,7 +10,7 @@
 *.suo
 *.user
 *.sln.docstates
-*.dtbcache
+*.dtbcache.v2
 *.futdcache.v2
 
 # Build results
