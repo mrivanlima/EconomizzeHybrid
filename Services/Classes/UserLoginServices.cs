@@ -44,14 +44,14 @@ namespace EconomizzeHybrid.Services.Classes
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, options);   
-                }
+                    CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, options);
+					_navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
+				}
                 else
                 {
                     CurrentUser = null;
                     Message = jsonResponse.ToString();
                 }
-                _navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 
             }
             catch (Exception ex)

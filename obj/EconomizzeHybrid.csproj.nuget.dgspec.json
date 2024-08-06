@@ -10,7 +10,7 @@
         "projectUniqueName": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\EconomizzeHybrid.csproj",
         "projectName": "EconomizzeHybrid",
         "projectPath": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\EconomizzeHybrid.csproj",
-        "packagesPath": "C:\\Users\\mriva\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\theka\\.nuget\\packages\\",
         "outputPath": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
@@ -18,7 +18,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\mriva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\theka\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -68,7 +68,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
@@ -80,16 +80,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )",
+              "version": "[8.0.6, )",
               "autoReferenced": true
             }
           },
@@ -112,14 +112,14 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-ios17.2": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
@@ -131,16 +131,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )",
+              "version": "[8.0.6, )",
               "autoReferenced": true
             }
           },
@@ -163,14 +163,14 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-maccatalyst17.2": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
@@ -182,16 +182,16 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )",
+              "version": "[8.0.6, )",
               "autoReferenced": true
             }
           },
@@ -215,14 +215,14 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         },
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
           "dependencies": {
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
@@ -234,11 +234,11 @@
             },
             "Microsoft.Maui.Controls": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             },
             "Microsoft.Maui.Controls.Compatibility": {
               "target": "Package",
-              "version": "[8.0.21, )"
+              "version": "[8.0.40, )"
             }
           },
           "imports": [
@@ -266,7 +266,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
