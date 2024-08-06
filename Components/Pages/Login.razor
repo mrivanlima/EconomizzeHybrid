@@ -1,0 +1,83 @@
+﻿@page "/Login"
+@attribute [StreamRendering]
+
+@inject IUserLoginServices UserLoginServices
+@inject NavigationManager NavigationManager
+@inject NavService NavService
+
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h3 class="text-center">Login</h3>
+            <EditForm Enhance Model="user" FormName="Login" OnValidSubmit="LoginUserAsync">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="form-group">
+                 @*    <label for="email">Email address</label> *@
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <InputText @bind-Value="@user.Username" class="form-control" placeholder="Email" ></InputText>
+                        
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => user.Username"></ValidationMessage>
+                    </div>
+                </div>
+                <div class="form-group">
+                   @*  <label for="password">Password</label> *@
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <InputText @bind-Value="@user.Password" class="form-control" placeholder="Senha"></InputText>
+                        
+                        @* <input type="password" class="form-control" id="password" placeholder="Senha"> *@
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => user.Password"></ValidationMessage>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <hr>
+                <button type="button" class="btn btn-danger btn-block">
+                    <i class="fab fa-google"></i> Login with Google
+                </button>
+                @* <InputNumber @bind-Value="@user.UserId" hidden></InputNumber> *@
+            </EditForm>
+            <br/>
+            <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
+                <p>@Message</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm(FormName = "Login")]
+    private UserLoginModel user { get; set; } = new();
+
+    private String Message = String.Empty;
+    private bool isVisible = false;
+
+    protected override void OnInitialized()
+    {
+        UserLoginServices.LogOut();
+    }
+
+
+    private async Task  LoginUserAsync()
+    {
+        ArgumentNullException.ThrowIfNull(user);
+        await UserLoginServices.ReadAsync(user);
+        isVisible = true;
+        Message = UserLoginServices.Message;
+        if (UserLoginServices.CurrentUser is not null)
+        {          
+            NavigationManager.NavigateTo("/");
+        }
+    } 
+}

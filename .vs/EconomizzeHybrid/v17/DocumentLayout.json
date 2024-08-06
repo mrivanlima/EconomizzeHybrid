@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\classes\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\classes\\userloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\userloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\interfaces\\iuserservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\model\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:model\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\interfaces\\iuserloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\interfaces\\iuserloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "Components\\Pages\\Login.razor",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-06T04:05:49.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-06T04:05:37.239Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Components\\Pages\\Home.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-06T02:14:20.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IUserServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Interfaces\\IUserServices.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IUserServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Interfaces\\IUserServices.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IUserServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:10:28.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IUserLoginServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Interfaces\\IUserLoginServices.cs",
+              "RelativeDocumentMoniker": "Services\\Interfaces\\IUserLoginServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Interfaces\\IUserLoginServices.cs",
+              "RelativeToolTip": "Services\\Interfaces\\IUserLoginServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:10:03.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwCMAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:09:28.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Model\\UserModel.cs",
+              "RelativeDocumentMoniker": "Model\\UserModel.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Model\\UserModel.cs",
+              "RelativeToolTip": "Model\\UserModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:08:29.908Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserLoginServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginServices.cs",
+              "RelativeDocumentMoniker": "Services\\Classes\\UserLoginServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginServices.cs",
+              "RelativeToolTip": "Services\\Classes\\UserLoginServices.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAcwDsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:06:07.318Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserServices.cs",
+              "RelativeDocumentMoniker": "Services\\Classes\\UserServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserServices.cs",
+              "RelativeToolTip": "Services\\Classes\\UserServices.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAArwCwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T02:05:39.511Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\EconomizzeHybrid.csproj;x64

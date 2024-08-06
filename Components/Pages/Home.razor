@@ -1,0 +1,64 @@
+﻿@page "/"
+@inject IUserLoginServices UserLoginServices
+@inject IUserServices UserServices
+@inject NavigationManager NavigationManager
+
+
+<div>
+    @if (currentUser is not null && currentUserDetails is not null)
+    {
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col">
+                   @*  <h1>Welcome to EconomizzeHybrid</h1> *@
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center">
+                        <span class="me-3">@currentUserDetails.UserFirstName</span>
+                        <button class="btn btn-outline-light position-relative">
+                            <i class="bi bi-bell-fill"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                                @* <span class="visually-hidden">unread messages</span> *@
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p><em>Loading...</em></p>
+    }
+
+    
+
+</div>
+@code{
+    private UserLoginModel? currentUser;
+    private UserModel? currentUserDetails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        currentUser = UserLoginServices.CurrentUser;
+        if (currentUser is null)
+        {
+            NavigationManager.NavigateTo("Login");
+        }
+        else
+        {
+            ArgumentNullException.ThrowIfNull(currentUser);
+            await UserServices.ReadAsyncById(currentUser.UserId);
+            currentUserDetails = UserServices.CurrentUserDetails;
+        }
+    }
+
+    private void ShowAlert()
+    {
+        // Implement your alert logic here
+        Console.WriteLine("Alert button clicked!");
+    }
+    
+   
+}
