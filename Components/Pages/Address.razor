@@ -1,0 +1,40 @@
+﻿@page "/endereco"
+
+
+@inject IAddressServices AddressServices
+
+
+<h3>Address</h3>
+
+<SearchZipCode OnSuccess="HandleSuccess"></SearchZipCode>
+
+@if (isFirstComponentSuccessful)
+{
+    @if (address is not null)
+    {
+        <h3>Endereco</h3>
+        <input @bind="address.Complement"/>
+        <input  @bind="address.StreetName" />
+        <input disabled  @bind="address.CityName" />
+        <input disabled @bind="address.StateName" />
+        <input hidden @bind="address.StreetId" />
+    }
+}
+
+
+
+
+@code {
+    private AddressModel? address;
+    private bool isFirstComponentSuccessful = false;
+    
+    private void HandleSuccess()
+    {
+
+        isFirstComponentSuccessful = true;
+        address = AddressServices.CurrentAddress;
+    }
+
+    
+
+}

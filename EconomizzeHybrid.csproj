@@ -65,7 +65,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Components\Controls\" />
+      <Folder Include="Events\" />
     </ItemGroup>
 
 </Project>

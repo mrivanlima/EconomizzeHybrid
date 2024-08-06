@@ -39,7 +39,7 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, Options);
-					_navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
+					_navService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 				}
                 else
                 {

@@ -10,16 +10,17 @@ namespace EconomizzeHybrid.Services.Components
     public class NavService
     {
         public event Action OnChange;
-        public List<NavItem> NavItems { get; private set; } = new List<NavItem>
+        public List<NavItemModel> NavItems { get; private set; } = new List<NavItemModel>
         {
-            new NavItem { Text = "Home", Url = "/", Icon = "bi bi-house-door-fill", IsVisible = true },
-            new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-plus-square-fill", IsVisible = true },
-            new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-alarm-fill", IsVisible = true },
-            new NavItem { Text = "Weather", Url = "weather", Icon = "bi bi-list-nested", IsVisible = true },
+            new NavItemModel { Text = "Home", Url = "/", Icon = "bi bi-house-door-fill", IsVisible = true },
+            new NavItemModel { Text = "Endereço", Url = "endereco", Icon = "bi bi-house", IsVisible = true },
+            //new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-plus-square-fill", IsVisible = true },
+            //new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-alarm-fill", IsVisible = true },
+            //new NavItem { Text = "Weather", Url = "weather", Icon = "bi bi-list-nested", IsVisible = true },
             //new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-list-nested", IsVisible = false },
         };
 
-        public void AddNavItem(NavItem item)
+        public void AddNavItem(NavItemModel item)
         {
             NavItems.Add(item);
             NotifyStateChanged();

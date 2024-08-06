@@ -1,8 +1,11 @@
-﻿using EconomizzeHybrid.Model;
+﻿
+using EconomizzeHybrid.Model;
 using EconomizzeHybrid.Services.Classes;
 using EconomizzeHybrid.Services.Components;
 using EconomizzeHybrid.Services.Interfaces;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace EconomizzeHybrid
 {
@@ -17,7 +20,13 @@ namespace EconomizzeHybrid
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
-                
+
+            var JsonSerializerOptions = new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true,
+            };
+
 
             builder.Services.AddMauiBlazorWebView();
 
@@ -34,6 +43,10 @@ namespace EconomizzeHybrid
 
             builder.Services.AddSingleton<IUserLoginServices,  UserLoginServices>();
             builder.Services.AddSingleton<IUserServices, UserServices>();
+            builder.Services.AddSingleton(JsonSerializerOptions);
+
+            builder.Services.AddScoped<IAddressServices, AddressServices>();
+
             builder.Services.AddSingleton<NavService>();
             //builder.Services.AddSingleton(sp =>
             //new HttpClient
