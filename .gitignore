@@ -22,6 +22,9 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+# Ignore build output directories
+bin/
+obj/
 
 # Roslyn cache directories
 *.ide/
