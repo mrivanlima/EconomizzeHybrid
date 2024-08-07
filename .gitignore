@@ -25,6 +25,8 @@ bld/
 # Ignore build output directories
 bin/
 obj/
+bin/Debug/
+obj/Debug/
 
 # Roslyn cache directories
 *.ide/
