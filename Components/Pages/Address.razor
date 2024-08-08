@@ -15,17 +15,17 @@
 <EditForm FormName="AddAddress" Model="address" OnValidSubmit="AddAddress">
     <DataAnnotationsValidator></DataAnnotationsValidator>
 
-    <InputText placeholder="Rua" @bind-Value="address.StreetName" />
+    <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
     <div class="col">
         <ValidationMessage For="() => address.StreetName"></ValidationMessage>
     </div>
 
-    <InputText placeholder="Complemento" @bind-Value="address.Complement" />
+    <InputText placeholder="Complemento" @bind-Value="address.Complement" disabled="@isSubmitted" />
     <div class="col">
         <ValidationMessage For="() => address.Complement"></ValidationMessage>
     </div>
 
-    <InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName" />
+    <InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName"  />
     <div class="col">
         <ValidationMessage For="() => address.NeighborhoodName"></ValidationMessage>
     </div>
@@ -36,7 +36,7 @@
     <InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
     <div class="col"></div>
 
-    <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control">
+    <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control" disabled="@isSubmitted">
         <option value="0" selected>Selecione o tipo de endereco</option>
         @if (addressTypesModel is not null)
         {
@@ -52,7 +52,7 @@
        
     <InputNumber hidden @bind-Value="address.StreetId" />
         
-    <button type="submit" class="btn btn-primary">Buscar Cep</button>
+    <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Buscar Cep</button>
 
 </EditForm>
 
@@ -60,7 +60,7 @@
 @code {
     [SupplyParameterFromForm]
     private AddressModel? address { get; set; } = new();
-    private bool isFirstComponentSuccessful = false;
+    private bool isSubmitted = false;
     private IEnumerable<AddressTypeModel>? addressTypesModel;
 
     protected override async Task OnInitializedAsync()
@@ -71,10 +71,8 @@
 
     private void HandleSuccess()
     {
-
-        // isFirstComponentSuccessful = true;
         address = AddressServices.CurrentAddress;
-
+        
     }
 
     private void HandleFailure()
@@ -84,6 +82,7 @@
 
     private void AddAddress()
     {
+        isSubmitted = true;
         
     }
 
