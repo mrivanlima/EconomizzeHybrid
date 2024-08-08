@@ -5,33 +5,57 @@
 
 <h3>Buscar Cep</h3>
 
-<EditForm FormName="SearchZipCode" Model="address" OnValidSubmit="BuscarCep">
-    <DataAnnotationsValidator></DataAnnotationsValidator>
-    <InputText placeholder="Entrar Cep" @bind-Value = "address.ZipCode" />
-    <div class="col">
-        <ValidationMessage For="() => address.ZipCode"></ValidationMessage>
+@if (zipCode is not null)
+{
+    <EditForm FormName="SearchZipCode" Model="zipCode" OnValidSubmit="BuscarCep">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <InputText placeholder="Entrar Cep" @bind-Value="zipCode.ZipCode" />
+        <div class="col">
+            <ValidationMessage For="() => zipCode.ZipCode"></ValidationMessage>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar Cep</button>
+
+    </EditForm>
+    <br />
+    <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
+        <p>@Message</p>
     </div>
-    <button type="submit" class="btn btn-primary">Buscar Cep</button>
-    
-</EditForm>
+}
+else
+{
+    <p><em>Loading...</em></p>
+}
 
 @code {
 
     [Parameter]
     public EventCallback OnSuccess { get; set; }
-    private AddressModel? address { get; set; } = new();
-    string cep = string.Empty;
+
+    [Parameter]
+    public EventCallback OnFailure { get; set; }
+
+    private SearchZipCodeModel? zipCode { get; set; } = new();
+    private String Message = String.Empty;
+    private bool isVisible = false;
 
     private async Task BuscarCep()
     {
-        if (string.IsNullOrWhiteSpace(address.ZipCode))
+        ArgumentNullException.ThrowIfNull(zipCode);
+        if (string.IsNullOrWhiteSpace(zipCode.ZipCode))
         {
             return;
         }
-        await AddressServices.SearchZipCodeAsync(address.ZipCode);
+        await AddressServices.SearchZipCodeAsync(zipCode);
         if (AddressServices.CurrentAddress is not null)
         {
+            isVisible = false;
             await OnSuccess.InvokeAsync();
+        }
+        else
+        {
+            isVisible = true;
+            Message = AddressServices.Message;
+            await OnFailure.InvokeAsync();
         }
     }
 }

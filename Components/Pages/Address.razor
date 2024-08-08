@@ -2,37 +2,89 @@
 
 
 @inject IAddressServices AddressServices
+@inject IAddressTypeServices AddressTypeServices
 
 
 <h3>Address</h3>
 
-<SearchZipCode OnSuccess="HandleSuccess"></SearchZipCode>
-
-@if (isFirstComponentSuccessful)
-{
-    @if (address is not null)
-    {
-        <h3>Endereco</h3>
-        <input @bind="address.Complement"/>
-        <input  @bind="address.StreetName" />
-        <input disabled  @bind="address.CityName" />
-        <input disabled @bind="address.StateName" />
-        <input hidden @bind="address.StreetId" />
-    }
-}
+<SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
+<hr/>
 
 
+
+<EditForm FormName="AddAddress" Model="address" OnValidSubmit="AddAddress">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    <InputText placeholder="Rua" @bind-Value="address.StreetName" />
+    <div class="col">
+        <ValidationMessage For="() => address.StreetName"></ValidationMessage>
+    </div>
+
+    <InputText placeholder="Complemento" @bind-Value="address.Complement" />
+    <div class="col">
+        <ValidationMessage For="() => address.Complement"></ValidationMessage>
+    </div>
+
+    <InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName" />
+    <div class="col">
+        <ValidationMessage For="() => address.NeighborhoodName"></ValidationMessage>
+    </div>
+       
+    <InputText disabled placeholder="Cidade" @bind-Value="address.CityName" />
+    <div class="col"></div>
+
+    <InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
+    <div class="col"></div>
+
+    <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control">
+        <option value="0" selected>Selecione o tipo de endereco</option>
+        @if (addressTypesModel is not null)
+        {
+            @foreach (var addressType in addressTypesModel)
+            {
+                <option value="@addressType.AddressTypeId">@addressType.AddressTypeName</option>
+            }
+        }
+    </InputSelect>
+    <div class="col">
+        <ValidationMessage For="() => address.AddressTypeId"></ValidationMessage>
+    </div>
+       
+    <InputNumber hidden @bind-Value="address.StreetId" />
+        
+    <button type="submit" class="btn btn-primary">Buscar Cep</button>
+
+</EditForm>
 
 
 @code {
-    private AddressModel? address;
+    [SupplyParameterFromForm]
+    private AddressModel? address { get; set; } = new();
     private bool isFirstComponentSuccessful = false;
-    
+    private IEnumerable<AddressTypeModel>? addressTypesModel;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await AddressTypeServices.AddressTypeReadAll();
+        addressTypesModel = AddressTypeServices.AddressTypes;
+    }
+
     private void HandleSuccess()
     {
 
-        isFirstComponentSuccessful = true;
+        // isFirstComponentSuccessful = true;
         address = AddressServices.CurrentAddress;
+
+    }
+
+    private void HandleFailure()
+    {
+        address = new();
+    }
+
+    private void AddAddress()
+    {
+        
     }
 
     

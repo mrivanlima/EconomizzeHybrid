@@ -3,34 +3,33 @@ using EconomizzeHybrid.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EconomizzeHybrid.Services.Classes
 {
-    public class AddressServices : IAddressServices
+    internal class AddressTypeServices : IAddressTypeServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
+        public IEnumerable<AddressTypeModel>? AddressTypes { get; set; }
 
-        public AddressModel? CurrentAddress { get; set; }
-        public SearchZipCodeModel CurrentZipCode { get; set; }
         public string Message { get; set; }
 
-        public AddressServices(IHttpClientFactory httpClientFactory, JsonSerializerOptions jsonSerializerOptions) 
+        public AddressTypeServices(IHttpClientFactory httpClientFactory, JsonSerializerOptions jsonSerializerOptions)
         {
             _httpClientFactory = httpClientFactory;
             _jsonSerializerOptions = jsonSerializerOptions;
             Message = String.Empty;
+            //AddressTypes = new List<AddressTypeModel>();
         }
 
-        public async Task SearchZipCodeAsync(SearchZipCodeModel currentZipCode)
+        
+        public async Task AddressTypeReadAll()
         {
-            CurrentZipCode = currentZipCode;
-            var url = $"endereco/{CurrentZipCode.ZipCode}";
-
+            var url = $"tipodeendereco";
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("economizze");
@@ -38,11 +37,11 @@ namespace EconomizzeHybrid.Services.Classes
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    CurrentAddress = JsonSerializer.Deserialize<AddressModel>(jsonResponse, _jsonSerializerOptions);
+                    AddressTypes = JsonSerializer.Deserialize<IEnumerable<AddressTypeModel>>(jsonResponse, _jsonSerializerOptions);
                 }
                 else
                 {
-                    CurrentAddress = null;
+                    AddressTypes = null;
                     Message = jsonResponse.ToString();
                 }
 

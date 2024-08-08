@@ -46,6 +46,7 @@ namespace EconomizzeHybrid
             builder.Services.AddSingleton(JsonSerializerOptions);
 
             builder.Services.AddScoped<IAddressServices, AddressServices>();
+            builder.Services.AddScoped<IAddressTypeServices, AddressTypeServices>();
 
             builder.Services.AddSingleton<NavService>();
             //builder.Services.AddSingleton(sp =>

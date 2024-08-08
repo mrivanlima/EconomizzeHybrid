@@ -9,8 +9,9 @@ namespace EconomizzeHybrid.Services.Interfaces
 {
     public interface IAddressServices
     {
-        Task SearchZipCodeAsync(string zipCode);
+        Task SearchZipCodeAsync(SearchZipCodeModel CurrentZipCode);
         AddressModel CurrentAddress { get; set; }
+        SearchZipCodeModel CurrentZipCode { get; set; }
         string Message { get; set; }
     }
 }
