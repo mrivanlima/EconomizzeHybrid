@@ -1,7 +1,8 @@
-C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeComponents.staticwebassets.runtime.json
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SqlLiteData\UserInfo.db
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.runtimeconfig.json
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.pdb
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Dapper.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Authorization.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Components.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Components.Forms.dll
@@ -9,6 +10,7 @@ C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\ma
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Components.WebView.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Components.WebView.Maui.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.AspNetCore.Metadata.dll
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Data.Sqlite.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Extensions.Configuration.Binder.dll
@@ -37,6 +39,9 @@ C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\ma
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Essentials.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.Maui.Graphics.dll
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.batteries_v2.dll
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.core.dll
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\System.IO.Pipelines.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\ar\Microsoft.Maui.Controls.resources.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\ca\Microsoft.Maui.Controls.resources.dll
@@ -72,6 +77,7 @@ C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\ma
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\zh-HK\Microsoft.Maui.Controls.resources.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\zh-Hans\Microsoft.Maui.Controls.resources.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\zh-Hant\Microsoft.Maui.Controls.resources.dll
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\libe_sqlite3.dylib
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.CSharp.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.VisualBasic.Core.dll
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\Microsoft.VisualBasic.dll
@@ -276,10 +282,6 @@ C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\ma
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet-nativeaot.a
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet.a
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\libxamarin-dotnet.dylib
-C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeComponents.dll
-C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeShared.dll
-C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeComponents.pdb
-C:\Development\EconomizzeHybrid\EconomizzeHybrid\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeShared.pdb
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\staticwebassets.build.json
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\staticwebassets.development.json
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\staticwebassets\msbuild.EconomizzeHybrid.Microsoft.AspNetCore.StaticWebAssets.props
@@ -329,6 +331,7 @@ C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\ma
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.AssemblyInfo.cs
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.csproj.CoreCompileInputs.cache
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.MvcApplicationPartsAssemblyInfo.cache
+C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.sourcelink.json
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\XamlC.stamp
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\Economiz.47B4EABF.Up2Date
 C:\Development\EconomizzeHybrid\EconomizzeHybrid\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\EconomizzeHybrid.dll

@@ -1,0 +1,96 @@
+﻿@page "/Criar"
+@inject IUserLoginServices UserLoginServices
+@inject NavigationManager NavigationManager
+@inject UserLoginSqliteServices UserLoginSqliteServices
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h3 class="text-center">Criar Conta</h3>
+            <EditForm Enhance Model="register" FormName="Register" OnValidSubmit="RegisterUserAsync">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <div class="form-group">
+                    @*    <label for="email">Email address</label> *@
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <InputText @bind-Value="@register.Username" class="form-control" placeholder="Email"></InputText>
+
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => register.Username"></ValidationMessage>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*  <label for="password">Password</label> *@
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <InputText @bind-Value="@register.Password" class="form-control" placeholder="Senha"></InputText>
+
+                        @* <input type="password" class="form-control" id="password" placeholder="Senha"> *@
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => register.Password"></ValidationMessage>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @*  <label for="password">Password</label> *@
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <InputText @bind-Value="@register.ConfirmPassword" class="form-control" placeholder="Senha"></InputText>
+
+                        @* <input type="password" class="form-control" id="password" placeholder="Senha"> *@
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => register.ConfirmPassword"></ValidationMessage>
+                    </div>
+                </div>
+                <InputNumber hidden @bind-Value="@register.UserId"></InputNumber>
+                <button type="submit" class="btn btn-primary btn-block">Criar</button>
+                <hr>
+                <button type="button" class="btn btn-danger btn-block">
+                    <i class="fab fa-google"></i> Login with Google
+                </button>
+            </EditForm>
+            <br />
+            <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
+                <p>@Message</p>
+            </div>
+            <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
+                Novo Usuario? Criar!
+            </NavLink>
+        </div>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm(FormName = "Register")]
+    private RegisterModel register { get; set; } = new();
+
+    private String Message = String.Empty;
+    private bool isVisible = false;
+
+    private async Task RegisterUserAsync()
+    {
+        ArgumentNullException.ThrowIfNull(register);
+        await UserLoginServices.CreateAsync(register);
+        isVisible = true;
+        Message = UserLoginServices.Message;
+        register = UserLoginServices.RegisteredUser;
+        await RegisterSqlLite();
+        if (UserLoginServices.CurrentUser is not null)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+    private async Task RegisterSqlLite()
+    {
+        await UserLoginSqliteServices.CreateAsync(register);
+    }
+}

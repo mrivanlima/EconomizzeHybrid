@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EconomizzeHybrid")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+52a2a040a32b452f6ecf6b561b88b6caa08cb591")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+1cd4d4d92ef8905ceaafa0bac4b6a85934f853c3")]
 [assembly: System.Reflection.AssemblyProductAttribute("EconomizzeHybrid")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EconomizzeHybrid")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -60,6 +60,7 @@ splashSplashScreen.scale-400.png
 wwwroot\EconomizzeHybrid.styles.css
 wwwroot\EconomizzeHybrid.bundle.scp.css
 AboutAssets.txt
+SqlLiteData\UserInfo.db
 wwwroot\css\app.css
 wwwroot\css\bootstrap\bootstrap.min.css
 wwwroot\css\bootstrap\bootstrap.min.css.map

@@ -1,13 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
 using System.Data;
 using Microsoft.Data.Sqlite;
-using System.Data.Common;
 using System.Reflection;
 
 namespace EconomizzeHybrid.SqlLiteData

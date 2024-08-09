@@ -14,6 +14,7 @@ namespace EconomizzeHybrid.Services.Classes
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly NavService _navService;
         public UserLoginModel? CurrentUser { get; set; }
+        public RegisterModel? RegisteredUser { get; set; }
         public string Message { get; set; }
         private  JsonSerializerOptions Options {get; set;}
 
@@ -45,6 +46,38 @@ namespace EconomizzeHybrid.Services.Classes
                     CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, Options);
 					_navService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 				}
+                else
+                {
+                    Message = jsonResponse.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+
+        public async Task CreateAsync(RegisterModel register)
+        {
+            var url = "conta/criar";
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("economizze");
+                var response = await httpClient.PostAsJsonAsync(url, register);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    RegisteredUser = JsonSerializer.Deserialize<RegisterModel>(jsonResponse, Options);
+                    CurrentUser = new();
+                    CurrentUser.UserId = RegisteredUser.UserId;
+                    CurrentUser.Username = RegisteredUser.Username;
+                    CurrentUser.Password = RegisteredUser.Password;
+                    //_navService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
+                }
                 else
                 {
                     Message = jsonResponse.ToString();

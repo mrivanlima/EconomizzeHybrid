@@ -80,7 +80,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(5000);
+        // await Task.Delay(5000);
         currentUser = UserLoginServices.CurrentUser;
         if(currentUser is null)
         {
