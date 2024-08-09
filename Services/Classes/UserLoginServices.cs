@@ -1,6 +1,7 @@
 ﻿using EconomizzeHybrid.Model;
 using EconomizzeHybrid.Services.Components;
 using EconomizzeHybrid.Services.Interfaces;
+using EconomizzeHybrid.SqlLiteData;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -20,6 +21,9 @@ namespace EconomizzeHybrid.Services.Classes
         {
             _httpClientFactory = httpClientFactory;
             _navService = navService;
+
+
+            //_sqliteDb = sqliteDb;
             Options = new JsonSerializerOptions
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -29,7 +33,7 @@ namespace EconomizzeHybrid.Services.Classes
         }
         public async Task ReadAsync(UserLoginModel user)
         {
-            var url = "register/Auth";
+            var url = "conta/autenticar";
             
             try
             {

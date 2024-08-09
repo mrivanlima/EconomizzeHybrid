@@ -3,6 +3,7 @@ using EconomizzeHybrid.Model;
 using EconomizzeHybrid.Services.Classes;
 using EconomizzeHybrid.Services.Components;
 using EconomizzeHybrid.Services.Interfaces;
+using EconomizzeHybrid.SqlLiteData;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -49,6 +50,8 @@ namespace EconomizzeHybrid
             builder.Services.AddScoped<IAddressTypeServices, AddressTypeServices>();
 
             builder.Services.AddSingleton<NavService>();
+
+            builder.Services.AddSingleton<IDatabaseConnectionFactory, SqlLiteConnection>();
             //builder.Services.AddSingleton(sp =>
             //new HttpClient
             //{

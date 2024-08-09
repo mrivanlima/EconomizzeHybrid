@@ -1,0 +1,37 @@
+﻿using Microsoft.Maui.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Dapper;
+using System.Data;
+using System.Data.SQLite;
+using System.Data.Common;
+using System.Reflection;
+
+namespace EconomizzeHybrid.SqlLiteData
+{
+    public class SqlLiteConnection : IDatabaseConnectionFactory
+    {
+        private readonly string _connectionString;
+        private IDbConnection _dbConnection;
+        private readonly string _assemblyDirectory;
+        private readonly string _dbPath;
+        private readonly string _relativePath;
+
+        public SqlLiteConnection()
+        {
+            _assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            _relativePath = "SqlLiteData\\UserInfo.db";
+            _dbPath = Path.Combine(_assemblyDirectory, _relativePath);
+            _connectionString = $"Data Source={_dbPath}";
+            _dbConnection = new SQLiteConnection(_connectionString);
+        }
+
+        public IDbConnection GetConnection()
+        {
+            return _dbConnection;
+        }
+    }
+}

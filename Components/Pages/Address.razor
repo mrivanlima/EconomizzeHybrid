@@ -1,78 +1,103 @@
 ﻿@page "/endereco"
+@attribute [StreamRendering]
 
 
 @inject IAddressServices AddressServices
 @inject IAddressTypeServices AddressTypeServices
-
-
-<h3>Address</h3>
-
-<SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
-<hr/>
+@inject IUserLoginServices UserLoginServices
+@inject NavigationManager NavigationManager
 
 
 
-<EditForm FormName="AddAddress" Model="address" OnValidSubmit="AddAddress">
-    <DataAnnotationsValidator></DataAnnotationsValidator>
 
-    <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
-    <div class="col">
-        <ValidationMessage For="() => address.StreetName"></ValidationMessage>
-    </div>
+@if (currentUser is not null)
+{
+    <h3>Address</h3>
+    <SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
+    <hr />
 
-    <InputText placeholder="Complemento" @bind-Value="address.Complement" disabled="@isSubmitted" />
-    <div class="col">
-        <ValidationMessage For="() => address.Complement"></ValidationMessage>
-    </div>
+    <EditForm FormName="AddAddress" Model="address" OnValidSubmit="AddUserAddress">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
 
-    <InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName"  />
-    <div class="col">
-        <ValidationMessage For="() => address.NeighborhoodName"></ValidationMessage>
-    </div>
-       
-    <InputText disabled placeholder="Cidade" @bind-Value="address.CityName" />
-    <div class="col"></div>
+        <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
+        <div class="col">
+            <ValidationMessage For="() => address.StreetName"></ValidationMessage>
+        </div>
 
-    <InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
-    <div class="col"></div>
+        <InputText placeholder="Complemento" @bind-Value="address.Complement" disabled="@isSubmitted" />
+        <div class="col">
+            <ValidationMessage For="() => address.Complement"></ValidationMessage>
+        </div>
 
-    <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control" disabled="@isSubmitted">
-        <option value="0" selected>Selecione o tipo de endereco</option>
-        @if (addressTypesModel is not null)
-        {
-            @foreach (var addressType in addressTypesModel)
+        <InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName" />
+        <div class="col">
+            <ValidationMessage For="() => address.NeighborhoodName"></ValidationMessage>
+        </div>
+
+        <InputText disabled placeholder="Cidade" @bind-Value="address.CityName" />
+        <div class="col"></div>
+
+        <InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
+        <div class="col"></div>
+
+        <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control" disabled="@isSubmitted">
+            <option value="0" selected>Selecione o tipo de endereco</option>
+            @if (addressTypesModel is not null)
             {
-                <option value="@addressType.AddressTypeId">@addressType.AddressTypeName</option>
+                @foreach (var addressType in addressTypesModel)
+                {
+                    <option value="@addressType.AddressTypeId">@addressType.AddressTypeName</option>
+                }
             }
-        }
-    </InputSelect>
-    <div class="col">
-        <ValidationMessage For="() => address.AddressTypeId"></ValidationMessage>
-    </div>
-       
-    <InputNumber hidden @bind-Value="address.StreetId" />
-        
-    <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Buscar Cep</button>
+        </InputSelect>
+        <div class="col">
+            <ValidationMessage For="() => address.AddressTypeId"></ValidationMessage>
+        </div>
 
-</EditForm>
+        <InputCheckbox @bind-Value="address.MainAddress"></InputCheckbox>
+
+        <InputNumber hidden @bind-Value="address.UserId"></InputNumber>
+        <InputNumber hidden @bind-Value="address.StreetId"></InputNumber>
+        <InputNumber hidden @bind-Value="address.CreatedBy"></InputNumber>
+        <InputNumber hidden @bind-Value="address.ModifiedBy"></InputNumber>
+
+        <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Buscar Cep</button>
+    </EditForm>
+}
+else
+{
+    <p>Loading...</p>
+}
+
 
 
 @code {
-    [SupplyParameterFromForm]
-    private AddressModel? address { get; set; } = new();
+
+    private AddressModel? address = new();
+    private UserLoginModel? currentUser { get; set; }
     private bool isSubmitted = false;
     private IEnumerable<AddressTypeModel>? addressTypesModel;
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(5000);
+        currentUser = UserLoginServices.CurrentUser;
+        if(currentUser is null)
+        {
+            NavigationManager.NavigateTo("login");
+        }
         await AddressTypeServices.AddressTypeReadAll();
         addressTypesModel = AddressTypeServices.AddressTypes;
+        
     }
 
     private void HandleSuccess()
     {
         address = AddressServices.CurrentAddress;
-        
+        address.UserId = currentUser.UserId;
+        address.CreatedBy = currentUser.UserId;
+        address.ModifiedBy = currentUser.UserId;
+
     }
 
     private void HandleFailure()
@@ -80,12 +105,10 @@
         address = new();
     }
 
-    private void AddAddress()
+    private async Task AddUserAddress()
     {
-        isSubmitted = true;
-        
+        // isSubmitted = true;
+        await AddressServices.CreateUserAddressAsync(address);
+
     }
-
-    
-
 }

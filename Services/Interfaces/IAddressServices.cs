@@ -10,6 +10,8 @@ namespace EconomizzeHybrid.Services.Interfaces
     public interface IAddressServices
     {
         Task SearchZipCodeAsync(SearchZipCodeModel CurrentZipCode);
+
+        Task CreateUserAddressAsync(AddressModel model);
         AddressModel CurrentAddress { get; set; }
         SearchZipCodeModel CurrentZipCode { get; set; }
         string Message { get; set; }
