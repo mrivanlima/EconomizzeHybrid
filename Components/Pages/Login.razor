@@ -46,12 +46,14 @@
                 <button type="button" class="btn btn-danger btn-block">
                     <i class="fab fa-google"></i> Login with Google
                 </button>
-                @* <InputNumber @bind-Value="@user.UserId" hidden></InputNumber> *@
             </EditForm>
             <br/>
             <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
                 <p>@Message</p>
             </div>
+            <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
+                Novo Usuario? Criar!
+            </NavLink>
         </div>
     </div>
 </div>

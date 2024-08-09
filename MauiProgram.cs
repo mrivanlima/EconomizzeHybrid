@@ -39,8 +39,9 @@ namespace EconomizzeHybrid
             //{
             //    config.BaseAddress = new Uri("https://localhost:7255/api/");
             //});
+            //http://localhost:5240
 
-            
+
 
             builder.Services.AddSingleton<IUserLoginServices,  UserLoginServices>();
             builder.Services.AddSingleton<IUserServices, UserServices>();

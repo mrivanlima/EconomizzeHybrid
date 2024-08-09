@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using System.Data;
-using System.Data.SQLite;
+using Microsoft.Data.Sqlite;
 using System.Data.Common;
 using System.Reflection;
 
@@ -26,7 +26,7 @@ namespace EconomizzeHybrid.SqlLiteData
             _relativePath = "SqlLiteData\\UserInfo.db";
             _dbPath = Path.Combine(_assemblyDirectory, _relativePath);
             _connectionString = $"Data Source={_dbPath}";
-            _dbConnection = new SQLiteConnection(_connectionString);
+            _dbConnection = new SqliteConnection(_connectionString);
         }
 
         public IDbConnection GetConnection()
