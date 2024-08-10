@@ -26,13 +26,12 @@ namespace EconomizzeHybrid.Services.Classes
             connection.Open();
             try
             {
-                var sql = "INSERT INTO UserLogin (UserId, Username, Password) " +
-                                         "VALUES (@UserId, @Username, @Password)";
+                var sql = "INSERT INTO UserLogin (UserId, Username) " +
+                                         "VALUES (@UserId, @Username)";
                 var parameters = new
                 {
                     UserId = register.UserId,
-                    Username = register.Username,
-                    Password = register.Password
+                    Username = register.Username
                 };
 
                 await connection.ExecuteAsync(sql, parameters);

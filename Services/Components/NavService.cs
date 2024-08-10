@@ -14,6 +14,7 @@ namespace EconomizzeHybrid.Services.Components
         {
             new NavItemModel { Text = "Home", Url = "/", Icon = "bi bi-house-door-fill", IsVisible = true },
             new NavItemModel { Text = "Endereço", Url = "endereco", Icon = "bi bi-house", IsVisible = true },
+            new NavItemModel { Text = "Perfil", Url = "Perfil", Icon = "bi bi-house", IsVisible = true },
             //new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-plus-square-fill", IsVisible = true },
             //new NavItem { Text = "Counter", Url = "counter", Icon = "bi bi-alarm-fill", IsVisible = true },
             //new NavItem { Text = "Weather", Url = "weather", Icon = "bi bi-list-nested", IsVisible = true },
