@@ -2,6 +2,7 @@
 using EconomizzeHybrid.Model;
 using EconomizzeHybrid.Services.Interfaces;
 using EconomizzeHybrid.SqlLiteData;
+using Microsoft.Win32;
 
 namespace EconomizzeHybrid.Services.Classes
 {
@@ -20,6 +21,36 @@ namespace EconomizzeHybrid.Services.Classes
             _userLoginServices = userLoginServices;
         }
 
+        public async Task CreateUserSession(UserLoginModel userLoginModel)
+        {
+            var connection = _connectionFactory.GetConnection();
+            connection.Open();
+            try
+            {
+                var sql = "INSERT INTO UserSession(UserId, UserToken, IsLogged, LastLoginDate) " +
+                                       "VALUES (@UserId, @UserToken, @IsLogged, @LastLogInDate)";
+
+                var parameters = new
+                {
+                    UserId = userLoginModel.UserId,
+                    UserToken = userLoginModel.UserToken,
+                    IsLogged = true,
+                    LastLogInDate = DateTime.UtcNow.ToString()
+                };
+
+                await connection.ExecuteAsync(sql, parameters);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+        }
+
         public async Task CreateAsync(RegisterModel register)
         {
             var connection = _connectionFactory.GetConnection();
@@ -28,6 +59,7 @@ namespace EconomizzeHybrid.Services.Classes
             {
                 var sql = "INSERT INTO UserLogin (UserId, Username) " +
                                          "VALUES (@UserId, @Username)";
+                           
                 var parameters = new
                 {
                     UserId = register.UserId,
@@ -58,14 +90,18 @@ namespace EconomizzeHybrid.Services.Classes
             connection.Open();
             try
             {
-                var sql = "SELECT* FROM UserLogin WHERE Username = @Username";
+                var sql = "SELECT ul.*, us.UserToken " +
+                          "FROM UserLogin ul  " +
+                             "JOIN UserSession us " +
+                                "ON ul.UserId = us.UserId " +
+                                "AND us.IsLogged = 1 " +
+                          "WHERE Username = @Username";
                 var parameters = new
                 {
                     Username = user.Username,
                 };
 
                 var results = await connection.QuerySingleOrDefaultAsync<UserLoginModel>(sql, parameters);
-                var r = _userLoginServices;
                 _userLoginServices.CurrentUser = results;
                 
             }

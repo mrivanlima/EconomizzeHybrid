@@ -67,6 +67,7 @@
     private String Message = String.Empty;
     private bool isVisible = false;
 
+
     protected override void OnInitialized()
     {
         UserLoginServices.LogOut();
@@ -80,13 +81,14 @@
         if (UserLoginServices.CurrentUser is null)
         {
             await UserLoginServices.ReadAsync(user);
+            await UserLoginSqliteServices.CreateUserSession(UserLoginServices.CurrentUser);
         }
         
         isVisible = true;
         Message = UserLoginServices.Message;
         if (UserLoginServices.CurrentUser is not null)
-        {          
-            NavigationManager.NavigateTo("/");
+        {
+            NavigationManager.NavigateTo("perfil");
         }
     } 
 }

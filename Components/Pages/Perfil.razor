@@ -1,5 +1,6 @@
 ﻿@page "/perfil"
 @inject IUserLoginServices UserLoginServices
+@inject IUserServices UserServices
 @inject NavigationManager NavigationManager
 @inject UserLoginSqliteServices UserLoginSqliteServices
 
@@ -55,7 +56,7 @@
             <InputDate placeholder="Nascimento (Nao Obrigatorio)" class="form-control" @bind-Value="userModel.DateOfBirth" />
             <ValidationMessage For="@(() => userModel.DateOfBirth)" />
         </div>
-        <InputNumber hidden @bind-Value="userModel.UserId"></InputNumber>
+@*         <InputNumber hidden @bind-Value="userLoginModel.UserId"></InputNumber> *@
         <button type="submit" class="btn btn-primary">Submit</button>
     </EditForm>
 </div>
@@ -63,11 +64,25 @@
 @code {
 
     private UserModel? userModel = new();
+    private UserLoginModel? userLoginModel = new();
 
+    private int UserId { get; set; }
 
-    private void HandleValidSubmit()
+    protected override void OnInitialized()
     {
-        
+        userLoginModel = UserLoginServices.CurrentUser;
+        if (userLoginModel is null)
+        {
+            NavigationManager.NavigateTo("login");
+        }
+    }
+
+
+    private async Task HandleValidSubmit()
+    {
+        userModel.UserId = userLoginModel.UserId;
+        await UserServices.CreateUserAsync(userModel, userLoginModel.UserToken);
+
     }
 
 
