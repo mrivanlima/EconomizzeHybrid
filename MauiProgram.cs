@@ -33,13 +33,14 @@ namespace EconomizzeHybrid
 
             builder.Services.AddHttpClient("economizze", config =>
             {
-                config.BaseAddress = new Uri("https://localhost:7255/api/");
+                config.BaseAddress = new Uri("http://economizze.app/api/");
             });
             //builder.Services.AddHttpClient("economizze", config =>
             //{
             //    config.BaseAddress = new Uri("https://localhost:7255/api/");
             //});
             //http://localhost:5240
+            //http://economizze.app/api/
 
 
 
@@ -64,6 +65,9 @@ namespace EconomizzeHybrid
             builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
+            
+            
+            
             //builder.Services.AddSingleton<UserLogin>();
             return builder.Build();
         }
