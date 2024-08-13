@@ -68,13 +68,16 @@
 
     private int UserId { get; set; }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         userLoginModel = UserLoginServices.CurrentUser;
         if (userLoginModel is null)
         {
             NavigationManager.NavigateTo("login");
         }
+        await UserServices.ReadAsyncById(userLoginModel.UserId);
+        userModel = UserServices.CurrentUserDetails;
+        userModel.UserEmail = userLoginModel.Username;
     }
 
 

@@ -4,7 +4,7 @@
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
 @inject UserLoginSqliteServices UserLoginSqliteServices
-@* @inject NavService NavService *@
+@inject NavService NavService
 
 
 
@@ -86,6 +86,7 @@
         
         isVisible = true;
         Message = UserLoginServices.Message;
+        NavService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
         if (UserLoginServices.CurrentUser is not null)
         {
             NavigationManager.NavigateTo("perfil");

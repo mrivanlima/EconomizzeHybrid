@@ -12,7 +12,6 @@ namespace EconomizzeHybrid.Services.Classes
     public class UserLoginServices : IUserLoginServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly NavService _navService;
         public UserLoginModel? CurrentUser { get; set; }
         public RegisterModel? RegisteredUser { get; set; }
         public string Message { get; set; }
@@ -21,7 +20,6 @@ namespace EconomizzeHybrid.Services.Classes
         public UserLoginServices(IHttpClientFactory httpClientFactory, NavService navService)
         {
             _httpClientFactory = httpClientFactory;
-            _navService = navService;
 
 
             //_sqliteDb = sqliteDb;
@@ -44,7 +42,6 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, Options);
-					_navService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 				}
                 else
                 {
@@ -93,7 +90,6 @@ namespace EconomizzeHybrid.Services.Classes
         public void LogOut()
         {
             CurrentUser = null;
-            _navService.RemoveNavItem("login");
         }
     }
 }
