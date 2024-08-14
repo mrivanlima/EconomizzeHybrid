@@ -33,7 +33,7 @@ namespace EconomizzeHybrid
 
             builder.Services.AddHttpClient("economizze", config =>
             {
-                config.BaseAddress = new Uri("http://economizze.app/api/");
+                config.BaseAddress = new Uri("https://localhost:7255/api/");
             });
             //builder.Services.AddHttpClient("economizze", config =>
             //{

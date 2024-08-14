@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <h3 class="text-center">Criar Conta</h3>
-            <EditForm Enhance Model="register" FormName="Register" OnValidSubmit="RegisterUserAsync">
+            <EditForm hidden=@HideRegistration Enhance Model="register" FormName="Register" OnValidSubmit="RegisterUserAsync">
                 <DataAnnotationsValidator></DataAnnotationsValidator>
                 <div class="form-group">
                     @*    <label for="email">Email address</label> *@
@@ -59,8 +59,17 @@
                 </button>
             </EditForm>
             <br />
+
             <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
-                <p>@Message</p>
+                <EditForm Model="register" FormName="Verify" OnSubmit="Verify">
+
+                    <InputNumber hidden @bind-Value=@register.UserId></InputNumber>
+                    <InputText hidden @bind-Value=@UserUniqueId></InputText>
+                    <button type="submit" class="btn btn-danger btn-block">
+                        <i class="fab fa-google"></i> @Message
+                    </button>
+                </EditForm>
+                    
             </div>
             <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
                 Novo Usuario? Criar!
@@ -75,22 +84,47 @@
 
     private String Message = String.Empty;
     private bool isVisible = false;
+    private string? UserUniqueId { get; set; }
+    private bool NewUser { get; set; } = true;
+    private bool HideRegistration = false;
 
     private async Task RegisterUserAsync()
     {
         ArgumentNullException.ThrowIfNull(register);
         await UserLoginServices.CreateAsync(register);
         isVisible = true;
-        Message = UserLoginServices.Message;
-        register = UserLoginServices.RegisteredUser;
-        await RegisterSqlLite();
-        if (UserLoginServices.CurrentUser is not null)
+        if (!string.IsNullOrEmpty(UserLoginServices.Message.Trim()))
         {
-            NavigationManager.NavigateTo("/");
+            Message = UserLoginServices.Message.Trim();
+            NewUser = false;
+            return;
         }
+        register = UserLoginServices.RegisteredUser;
+        UserUniqueId = register.UserUniqueId.ToString();
+        Message = "Simular verificacao de email, clique aqui!";
+        register = UserLoginServices.RegisteredUser;
+        HideRegistration = true;
+        // await RegisterSqlLite();
+
     }
     private async Task RegisterSqlLite()
     {
         await UserLoginSqliteServices.CreateAsync(register);
+    }
+
+    private async Task Verify()
+    {
+        if (NewUser)
+        {
+            ArgumentNullException.ThrowIfNull(register);
+            await UserLoginServices.VerifyAsync(register);
+            Message = UserLoginServices.Message;
+            NavigationManager.NavigateTo("login");
+        }
+        else
+        {
+            
+        }
+
     }
 }

@@ -60,13 +60,10 @@
 </div>
 
 @code {
-
     [SupplyParameterFromForm(FormName = "Login")]
     private UserLoginModel user { get; set; } = new();
-
     private String Message = String.Empty;
     private bool isVisible = false;
-
 
     protected override void OnInitialized()
     {
@@ -81,12 +78,22 @@
         if (UserLoginServices.CurrentUser is null)
         {
             await UserLoginServices.ReadAsync(user);
-            await UserLoginSqliteServices.CreateUserSession(UserLoginServices.CurrentUser);
+            // await UserLoginSqliteServices.CreateUserSession(UserLoginServices.CurrentUser);
         }
         
         isVisible = true;
         Message = UserLoginServices.Message;
-        NavService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
+        NavService.AddNavItem
+        (
+            new NavItemModel 
+            { 
+                Text = "Sair", 
+                Url = "login", 
+                Icon = "bi bi-box-arrow-right", 
+                IsVisible = true 
+            }
+        );
+
         if (UserLoginServices.CurrentUser is not null)
         {
             NavigationManager.NavigateTo("perfil");

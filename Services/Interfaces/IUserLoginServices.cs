@@ -10,6 +10,7 @@ namespace EconomizzeHybrid.Services.Interfaces
     public interface IUserLoginServices
     {
         Task ReadAsync(UserLoginModel user);
+        Task VerifyAsync(RegisterModel register);
         UserLoginModel CurrentUser { get; set; }
         RegisterModel RegisteredUser { get; set; }
         string Message { get; set; }

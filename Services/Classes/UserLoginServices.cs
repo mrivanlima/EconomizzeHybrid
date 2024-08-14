@@ -87,6 +87,31 @@ namespace EconomizzeHybrid.Services.Classes
             }
         }
 
+        public async Task VerifyAsync(RegisterModel register)
+        {
+            var url = $"conta/verificar/{register.UserId}?userUniqueId={register.UserUniqueId}";
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("economizze");
+                var response = await httpClient.GetAsync(url);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    Message = "Verificacao concluida!";
+                }
+                else
+                {
+                    Message = jsonResponse.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+
         public void LogOut()
         {
             CurrentUser = null;

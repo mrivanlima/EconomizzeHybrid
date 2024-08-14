@@ -116,5 +116,10 @@ namespace EconomizzeHybrid.Services.Classes
             }
             
         }
+
+        public Task VerifyAsync(RegisterModel register)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
