@@ -12,17 +12,19 @@ namespace EconomizzeHybrid.Services.Classes
     public class UserLoginServices : IUserLoginServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly MessageHandler _messageHandler;
         public UserLoginModel? CurrentUser { get; set; }
         public RegisterModel? RegisteredUser { get; set; }
-        public string Message { get; set; }
         private  JsonSerializerOptions Options {get; set;}
 
         private readonly NavService _navService;
 
-        public UserLoginServices(IHttpClientFactory httpClientFactory, NavService navService)
+        public UserLoginServices(IHttpClientFactory httpClientFactory, 
+                                 NavService navService,
+                                 MessageHandler messageHandler)
         {
             _httpClientFactory = httpClientFactory;
-
+            _messageHandler = messageHandler;
 
             //_sqliteDb = sqliteDb;
             Options = new JsonSerializerOptions
@@ -30,7 +32,6 @@ namespace EconomizzeHybrid.Services.Classes
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 PropertyNameCaseInsensitive = true 
             };
-            Message = String.Empty;
             _navService = navService;
         }
         public async Task ReadAsync(UserLoginModel user)
@@ -48,13 +49,13 @@ namespace EconomizzeHybrid.Services.Classes
 				}
                 else
                 {
-                    Message = jsonResponse.ToString();
+                    _messageHandler.Message = jsonResponse.ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                Message = ex.Message;
+                _messageHandler.Message = ex.Message;
             }
         }
 
@@ -80,13 +81,13 @@ namespace EconomizzeHybrid.Services.Classes
                 }
                 else
                 {
-                    Message = jsonResponse.ToString();
+                    _messageHandler.Message = jsonResponse.ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                Message = ex.Message;
+                _messageHandler.Message = ex.Message;
             }
         }
 
@@ -101,17 +102,17 @@ namespace EconomizzeHybrid.Services.Classes
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-                    Message = "Verificacao concluida!";
+                    _messageHandler.Message = "Verificacao concluida! Faca o Login";
                 }
                 else
                 {
-                    Message = jsonResponse.ToString();
+                    _messageHandler.Message = jsonResponse.ToString();
                 }
 
             }
             catch (Exception ex)
             {
-                Message = ex.Message;
+                _messageHandler.Message = ex.Message;
             }
         }
 
@@ -120,6 +121,7 @@ namespace EconomizzeHybrid.Services.Classes
 
             CurrentUser = null;
             await _navService.RemoveNavItem("login");
+            _messageHandler.Message = string.Empty;
         }
     }
 }

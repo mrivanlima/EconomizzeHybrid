@@ -13,7 +13,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         Task VerifyAsync(RegisterModel register);
         UserLoginModel CurrentUser { get; set; }
         RegisterModel RegisteredUser { get; set; }
-        string Message { get; set; }
         Task CreateAsync(RegisterModel register);
         Task LogOut();
     }

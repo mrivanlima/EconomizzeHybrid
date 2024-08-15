@@ -2,6 +2,7 @@
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
 @inject UserLoginSqliteServices UserLoginSqliteServices
+@inject MessageHandler MessageHandler
 
 
 <div class="container mt-5">
@@ -66,14 +67,11 @@
                     <InputNumber hidden @bind-Value=@register.UserId></InputNumber>
                     <InputText hidden @bind-Value=@UserUniqueId></InputText>
                     <button type="submit" class="btn btn-danger btn-block">
-                        <i class="fab fa-google"></i> @Message
+                        <i class="fab fa-google"></i> @message
                     </button>
                 </EditForm>
                     
             </div>
-            <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
-                Novo Usuario? Criar!
-            </NavLink>
         </div>
     </div>
 </div>
@@ -82,26 +80,32 @@
     [SupplyParameterFromForm(FormName = "Register")]
     private RegisterModel register { get; set; } = new();
 
-    private String Message = String.Empty;
+    private String message = String.Empty;
     private bool isVisible = false;
     private string? UserUniqueId { get; set; }
     private bool NewUser { get; set; } = true;
     private bool HideRegistration = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(0);
+        MessageHandler.Message = string.Empty;
+    }
 
     private async Task RegisterUserAsync()
     {
         ArgumentNullException.ThrowIfNull(register);
         await UserLoginServices.CreateAsync(register);
         isVisible = true;
-        if (!string.IsNullOrEmpty(UserLoginServices.Message.Trim()))
+        if (!string.IsNullOrEmpty(MessageHandler.Message))
         {
-            Message = UserLoginServices.Message.Trim();
+            message = MessageHandler.Message;
             NewUser = false;
             return;
         }
         register = UserLoginServices.RegisteredUser;
         UserUniqueId = register.UserUniqueId.ToString();
-        Message = "Simular verificacao de email, clique aqui!";
+        message = "Simular verificacao de email, clique aqui!";
         register = UserLoginServices.RegisteredUser;
         HideRegistration = true;
         // await RegisterSqlLite();
@@ -118,12 +122,12 @@
         {
             ArgumentNullException.ThrowIfNull(register);
             await UserLoginServices.VerifyAsync(register);
-            Message = UserLoginServices.Message;
+            message = MessageHandler.Message;
             NavigationManager.NavigateTo("login");
         }
         else
         {
-            
+            NavigationManager.NavigateTo("login");
         }
 
     }

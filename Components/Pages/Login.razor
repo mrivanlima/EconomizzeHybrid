@@ -5,6 +5,7 @@
 @inject NavigationManager NavigationManager
 @inject UserLoginSqliteServices UserLoginSqliteServices
 @inject NavService NavService
+@inject MessageHandler MessageHandler
 
 
 
@@ -50,7 +51,7 @@
             </EditForm>
             <br/>
             <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
-                <p>@Message</p>
+                <p>@message</p>
             </div>
             <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
                 Novo Usuario? Criar!
@@ -62,12 +63,17 @@
 @code {
     [SupplyParameterFromForm(FormName = "Login")]
     private UserLoginModel user { get; set; } = new();
-    private String Message = String.Empty;
+    private String message = String.Empty;
     private bool isVisible = false;
 
     protected override async Task OnInitializedAsync()
     {
         await UserLoginServices.LogOut();
+        message = MessageHandler.Message;
+        if(!string.IsNullOrEmpty(message))
+        {
+            isVisible = true;
+        }
     }
 
 
@@ -82,11 +88,11 @@
         }
         
         isVisible = true;
-        Message = UserLoginServices.Message;
+        message = MessageHandler.Message;
 
         if (UserLoginServices.CurrentUser is not null)
         {
-            NavService.AddNavItem
+            await NavService.AddNavItem
             (
                 new NavItemModel
                     {
