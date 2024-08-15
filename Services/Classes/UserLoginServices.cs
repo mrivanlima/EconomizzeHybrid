@@ -17,6 +17,8 @@ namespace EconomizzeHybrid.Services.Classes
         public string Message { get; set; }
         private  JsonSerializerOptions Options {get; set;}
 
+        private readonly NavService _navService;
+
         public UserLoginServices(IHttpClientFactory httpClientFactory, NavService navService)
         {
             _httpClientFactory = httpClientFactory;
@@ -29,6 +31,7 @@ namespace EconomizzeHybrid.Services.Classes
                 PropertyNameCaseInsensitive = true 
             };
             Message = String.Empty;
+            _navService = navService;
         }
         public async Task ReadAsync(UserLoginModel user)
         {
@@ -112,9 +115,11 @@ namespace EconomizzeHybrid.Services.Classes
             }
         }
 
-        public void LogOut()
+        public async Task LogOut()
         {
+
             CurrentUser = null;
+            await _navService.RemoveNavItem("login");
         }
     }
 }

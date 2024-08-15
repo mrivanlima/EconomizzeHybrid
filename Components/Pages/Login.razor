@@ -65,16 +65,16 @@
     private String Message = String.Empty;
     private bool isVisible = false;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        UserLoginServices.LogOut();
+        await UserLoginServices.LogOut();
     }
 
 
     private async Task  LoginUserAsync()
     {
         ArgumentNullException.ThrowIfNull(user);
-        await UserLoginSqliteServices.ReadAsync(user);
+        // await UserLoginSqliteServices.ReadAsync(user);
         if (UserLoginServices.CurrentUser is null)
         {
             await UserLoginServices.ReadAsync(user);
@@ -83,19 +83,19 @@
         
         isVisible = true;
         Message = UserLoginServices.Message;
-        NavService.AddNavItem
-        (
-            new NavItemModel 
-            { 
-                Text = "Sair", 
-                Url = "login", 
-                Icon = "bi bi-box-arrow-right", 
-                IsVisible = true 
-            }
-        );
 
         if (UserLoginServices.CurrentUser is not null)
         {
+            NavService.AddNavItem
+            (
+                new NavItemModel
+                    {
+                        Text = "Sair",
+                        Url = "login",
+                        Icon = "bi bi-box-arrow-right",
+                        IsVisible = true
+                    }
+            );
             NavigationManager.NavigateTo("perfil");
         }
     } 

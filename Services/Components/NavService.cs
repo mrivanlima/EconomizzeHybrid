@@ -9,7 +9,7 @@ namespace EconomizzeHybrid.Services.Components
 {
     public class NavService
     {
-        public event Action OnChange;
+        public event Action? OnChange;
         public List<NavItemModel> NavItems { get; private set; } = new List<NavItemModel>
         {
             new NavItemModel { Text = "Home", Url = "/", Icon = "bi bi-house-door-fill", IsVisible = true },
@@ -21,14 +21,16 @@ namespace EconomizzeHybrid.Services.Components
             //new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-list-nested", IsVisible = false },
         };
 
-        public void AddNavItem(NavItemModel item)
+        public async Task AddNavItem(NavItemModel item)
         {
+            await Task.Delay(0);
             NavItems.Add(item);
             NotifyStateChanged();
         }
 
-        public void RemoveNavItem(string url)
+        public async Task RemoveNavItem(string url)
         {
+            await Task.Delay(0);
             var item = NavItems.FirstOrDefault(i => i.Url == url);
             if (item != null)
             {
@@ -37,8 +39,9 @@ namespace EconomizzeHybrid.Services.Components
             }
         }
 
-        public void UpdateNavItemVisibility(string url, bool isVisible)
+        public async Task UpdateNavItemVisibility(string url, bool isVisible)
         {
+            await Task.Delay(0);
             var item = NavItems.FirstOrDefault(i => i.Url == url);
             if (item != null)
             {

@@ -121,5 +121,10 @@ namespace EconomizzeHybrid.Services.Classes
         {
             throw new NotImplementedException();
         }
+
+        Task IUserLoginServices.LogOut()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

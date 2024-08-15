@@ -15,6 +15,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         RegisterModel RegisteredUser { get; set; }
         string Message { get; set; }
         Task CreateAsync(RegisterModel register);
-        void LogOut();
+        Task LogOut();
     }
 }
