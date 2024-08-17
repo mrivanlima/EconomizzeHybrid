@@ -58,11 +58,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="SqlLiteData\UserInfo.db" />
+      <None Remove="DataCache\UserInfo.db" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="SqlLiteData\UserInfo.db">
+      <Content Include="DataCache\UserInfo.db">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

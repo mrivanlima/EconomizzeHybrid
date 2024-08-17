@@ -1,7 +1,7 @@
 ﻿@page "/Criar"
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
-@inject UserLoginSqliteServices UserLoginSqliteServices
+@inject UserLoginCacheServices UserLoginSqliteServices
 @inject MessageHandler MessageHandler
 
 
@@ -113,7 +113,7 @@
     }
     private async Task RegisterSqlLite()
     {
-        await UserLoginSqliteServices.CreateAsync(register);
+        // await UserLoginSqliteServices.CreateAsync(register);
     }
 
     private async Task Verify()

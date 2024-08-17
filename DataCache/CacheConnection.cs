@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace EconomizzeHybrid.SqlLiteData
 {
-    public class SqlLiteConnection : IDatabaseConnectionFactory
+    public class CacheConnection : ICacheFactory
     {
         private readonly string _connectionString;
         private IDbConnection _dbConnection;
@@ -14,10 +14,10 @@ namespace EconomizzeHybrid.SqlLiteData
         private readonly string _dbPath;
         private readonly string _relativePath;
 
-        public SqlLiteConnection()
+        public CacheConnection()
         {
             _assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            _relativePath = "SqlLiteData\\UserInfo.db";
+            _relativePath = "DataCache\\UserInfo.db";
             _dbPath = Path.Combine(_assemblyDirectory, _relativePath);
             _connectionString = $"Data Source={_dbPath}";
             _dbConnection = new SqliteConnection(_connectionString);

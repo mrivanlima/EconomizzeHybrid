@@ -1,4 +1,6 @@
 ﻿@page "/"
+@attribute [StreamRendering]
+
 @inject IUserLoginServices UserLoginServices
 @inject IUserServices UserServices
 @inject NavigationManager NavigationManager
@@ -27,10 +29,7 @@
             </div>
         </div>
     }
-    else
-    {
-        <p><em>Loading...</em></p>
-    }
+   
 
     
 
@@ -44,7 +43,7 @@
         currentUser = UserLoginServices.CurrentUser;
         if (currentUser is null)
         {
-            NavigationManager.NavigateTo("Login");
+            NavigationManager.NavigateTo("Delay");
         }
         else
         {

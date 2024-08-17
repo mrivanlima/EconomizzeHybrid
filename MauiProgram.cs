@@ -45,7 +45,7 @@ namespace EconomizzeHybrid
 
 
             builder.Services.AddSingleton<IUserLoginServices,  UserLoginServices>();
-            builder.Services.AddSingleton<UserLoginSqliteServices>();
+            builder.Services.AddSingleton<UserLoginCacheServices>();
             builder.Services.AddSingleton<IUserServices, UserServices>();
             builder.Services.AddSingleton(JsonSerializerOptions);
 
@@ -54,7 +54,9 @@ namespace EconomizzeHybrid
 
             builder.Services.AddSingleton<NavService>();
 
-            builder.Services.AddSingleton<IDatabaseConnectionFactory, SqlLiteConnection>();
+            builder.Services.AddSingleton<ICacheFactory, CacheConnection>();
+            builder.Services.AddSingleton<ICacheServices, UserLoginCacheServices>();
+            
             builder.Services.AddSingleton<MessageHandler>();
             //builder.Services.AddSingleton(sp =>
             //new HttpClient

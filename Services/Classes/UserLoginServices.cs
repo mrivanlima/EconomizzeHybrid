@@ -120,7 +120,6 @@ namespace EconomizzeHybrid.Services.Classes
         {
 
             CurrentUser = null;
-            await _navService.RemoveNavItem("login");
             _messageHandler.Message = string.Empty;
         }
     }

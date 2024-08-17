@@ -2,9 +2,16 @@
 @inject IUserLoginServices UserLoginServices
 @inject IUserServices UserServices
 @inject NavigationManager NavigationManager
-@inject UserLoginSqliteServices UserLoginSqliteServices
+@inject UserLoginCacheServices UserLoginSqliteServices
 
-<div class="container mt-5">
+
+<div  class="d-flex justify-content-center">
+    <div hidden="@hideLoad" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="container mt-5" hidden="@hideContent">
     <EditForm FormName="User" Model="@userModel" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
@@ -65,19 +72,27 @@
 
     private UserModel? userModel = new();
     private UserLoginModel? userLoginModel = new();
+    private bool hideLoad = false;
+    private bool hideContent = true;
 
     private int UserId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        await Task.Delay(500);
         userLoginModel = UserLoginServices.CurrentUser;
         if (userLoginModel is null)
         {
             NavigationManager.NavigateTo("login");
         }
-        await UserServices.ReadAsyncById(userLoginModel.UserId);
-        userModel = UserServices.CurrentUserDetails;
-        userModel.UserEmail = userLoginModel.Username;
+        else
+        {
+            await UserServices.ReadAsyncById(userLoginModel.UserId);
+            userModel = UserServices.CurrentUserDetails;
+            userModel.UserEmail = userLoginModel.Username;
+        }
+        hideLoad = true;
+        hideContent = false;
     }
 
 

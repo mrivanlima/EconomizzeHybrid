@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EconomizzeHybrid.SqlLiteData
 {
-    public interface IDatabaseConnectionFactory
+    public interface ICacheFactory
     {
         IDbConnection GetConnection();
 

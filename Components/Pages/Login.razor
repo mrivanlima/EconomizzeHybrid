@@ -3,14 +3,17 @@
 
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
-@inject UserLoginSqliteServices UserLoginSqliteServices
+@inject ICacheServices CacheServices
 @inject NavService NavService
 @inject MessageHandler MessageHandler
 
+<div class="d-flex justify-content-center">
+    <div hidden="@hideLoad" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 
-
-
-<div class="container mt-5">
+<div hidden="@hideContent" class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-4">
             <h3 class="text-center">Login</h3>
@@ -65,26 +68,51 @@
     private UserLoginModel user { get; set; } = new();
     private String message = String.Empty;
     private bool isVisible = false;
+    private bool hideLoad = false;
+    private bool hideContent = true;
 
     protected override async Task OnInitializedAsync()
     {
-        await UserLoginServices.LogOut();
-        message = MessageHandler.Message;
-        if(!string.IsNullOrEmpty(message))
+        await Task.Delay(500);
+        if (UserLoginServices.CurrentUser is null)
         {
-            isVisible = true;
+            await CacheServices.SearchActiveSession();
+            UserLoginServices.CurrentUser = CacheServices.CurrentUser;
+
         }
+        if(UserLoginServices.CurrentUser is null)
+        {
+            // await UserLoginServices.LogOut();
+            message = MessageHandler.Message;
+            if (!string.IsNullOrEmpty(message))
+            {
+                isVisible = true;
+            }
+
+        }
+        else
+        {
+            user = UserLoginServices.CurrentUser;
+            user.Password = string.Empty;
+            await LoginUserAsync();
+        }
+        hideLoad = true;
+        hideContent = false;
     }
 
 
     private async Task  LoginUserAsync()
     {
+        if (UserLoginServices.CurrentUser is null)
+        {
+            await CacheServices.SearchActiveSession();
+        }
         ArgumentNullException.ThrowIfNull(user);
-        // await UserLoginSqliteServices.ReadAsync(user);
         if (UserLoginServices.CurrentUser is null)
         {
             await UserLoginServices.ReadAsync(user);
-            // await UserLoginSqliteServices.CreateUserSession(UserLoginServices.CurrentUser);
+            ArgumentNullException.ThrowIfNull(UserLoginServices.CurrentUser);
+            await CacheServices.CreateUserSession(UserLoginServices.CurrentUser);
         }
         
         isVisible = true;
@@ -97,7 +125,7 @@
                 new NavItemModel
                     {
                         Text = "Sair",
-                        Url = "login",
+                        Url = "Sair",
                         Icon = "bi bi-box-arrow-right",
                         IsVisible = true
                     }
