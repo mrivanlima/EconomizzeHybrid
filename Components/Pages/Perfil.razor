@@ -83,6 +83,7 @@
         userModel.UserId = UserLoginServices.CurrentUser.UserId;
         userModel.UserEmail = UserLoginServices.CurrentUser.Username;
         await SearchUserInCache();
+        await SearchUserFromAPI();
         hideLoad = true;
         hideContent = false;
     }
@@ -93,7 +94,6 @@
         if (userModel is not null && userLoginModel is not null)
         {
             await AddUserDetails();
-
             await AddUserDetailsToCache();
         }
     }
@@ -119,6 +119,20 @@
         if(UserLoginCacheServices.UserDetails is not null)
         {
             userModel = UserLoginCacheServices.UserDetails;
+            UserServices.CurrentUserDetails = userModel;
+        }
+    }
+
+    private async Task SearchUserFromAPI()
+    {
+        if (UserServices.CurrentUserDetails is null)
+        {
+            await UserServices.ReadAsyncById(userModel.UserId);
+            if (UserServices.CurrentUserDetails is not null)
+            {
+                userModel = UserServices.CurrentUserDetails;
+                await AddUserDetailsToCache();
+            }
         }
     }
 

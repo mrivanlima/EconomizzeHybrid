@@ -124,6 +124,7 @@ namespace EconomizzeHybrid.Services.Classes
                             "UserEmail, " +
                             "Cpf, " +
                             "Rg, " +
+                            "PhoneNumber, " +
                             "DateOfBirth " +
                           "FROM User " +
                           "WHERE UserId = @UserId " +
@@ -161,6 +162,7 @@ namespace EconomizzeHybrid.Services.Classes
                                             "UserEmail, " +
                                             "Cpf, " +
                                             "Rg, " +
+                                            "PhoneNumber, " +
                                             "DateOfBirth) " +
                                        "VALUES (" +
                                            "@UserId, " +
@@ -170,6 +172,7 @@ namespace EconomizzeHybrid.Services.Classes
                                            "@UserEmail, " +
                                            "@Cpf, " +
                                            "@Rg, " +
+                                           "@PhoneNumber, " +
                                            "@DateOfBirth) " +
                                        "ON CONFLICT(UserId) DO UPDATE " +
                                        "SET UserFirstName = @UserFirstName, " +
@@ -178,6 +181,7 @@ namespace EconomizzeHybrid.Services.Classes
                                            "UserEmail = @UserEmail, " +
                                            "Cpf = @Cpf, " +
                                            "Rg = @Rg, " +
+                                           "PhoneNumber = @PhoneNumber, " +
                                            "DateOfBirth = @DateOfBirth";
 
 
@@ -190,7 +194,8 @@ namespace EconomizzeHybrid.Services.Classes
                     UserEmail = model.UserEmail,
                     Cpf = model.Cpf,
                     Rg = model.Rg,
-                    DateOfBirth = model.DateOfBirth
+                    DateOfBirth = model.DateOfBirth,
+                    PhoneNumber = model.PhoneNumber
                 };
 
                 await connection.ExecuteAsync(sql, parameters);
