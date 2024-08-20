@@ -167,10 +167,10 @@ namespace EconomizzeHybrid.Services.Classes
                                            "@UserFirstName, " +
                                            "@UserMiddleName," +
                                            "@UserLastName, " +
-                                           "UserEmail, " +
-                                           "Cpf, " +
-                                           "Rg, " +
-                                           "DateOfBirth) " +
+                                           "@UserEmail, " +
+                                           "@Cpf, " +
+                                           "@Rg, " +
+                                           "@DateOfBirth) " +
                                        "ON CONFLICT(UserId) DO UPDATE " +
                                        "SET UserFirstName = @UserFirstName, " +
                                            "UserMiddleName = @UserMiddleName," +
