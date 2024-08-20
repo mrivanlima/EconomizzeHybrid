@@ -1,0 +1,138 @@
+﻿@inject IUserLoginServices UserLoginServices
+@inject IUserServices UserServices
+@inject NavigationManager NavigationManager
+@inject UserLoginCacheServices UserLoginCacheServices
+
+
+<div class="d-flex justify-content-center">
+    <div hidden="@hideLoad" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<div class="container mt-5" hidden="@hideContent">
+    <EditForm FormName="User" Model="@userModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <InputText placeholder="Primeiro Nome (Obrigatorio)" class="form-control" @bind-Value="userModel.UserFirstName" />
+            <ValidationMessage For="@(() => userModel.UserFirstName)" />
+        </div>
+
+        <div class="form-group">
+            <label for="middleName">Middle Name</label>
+            <InputText placeholder="Nome do meio (Nao Obrigatorio)" class="form-control" @bind-Value="userModel.UserMiddleName" />
+            <ValidationMessage For="@(() => userModel.UserMiddleName)" />
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <InputText placeholder="Ultimo Nome (Obrigatorio)" class="form-control" @bind-Value="userModel.UserLastName" />
+            <ValidationMessage For="@(() => userModel.UserLastName)" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <InputText disabled class="form-control" @bind-Value="userModel.UserEmail" type="email" />
+            <ValidationMessage For="@(() => userModel.UserEmail)" />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <InputText placeholder="Numero de telefone (Obrigatorio)" class="form-control" @bind-Value="userModel.PhoneNumber" />
+            <ValidationMessage For="@(() => userModel.PhoneNumber)" />
+        </div>
+
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <InputText placeholder="CPF (Nao Obrigatorio)" class="form-control" @bind-Value="userModel.Cpf" />
+            <ValidationMessage For="@(() => userModel.Cpf)" />
+        </div>
+
+        <div class="form-group">
+            <label for="rg">RG</label>
+            <InputText placeholder="RG (Nao Obrigatorio)" class="form-control" @bind-Value="userModel.Rg" />
+            <ValidationMessage For="@(() => userModel.Rg)" />
+        </div>
+
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <InputDate placeholder="Nascimento (Nao Obrigatorio)" class="form-control" @bind-Value="userModel.DateOfBirth" />
+            <ValidationMessage For="@(() => userModel.DateOfBirth)" />
+        </div>
+        <InputNumber hidden @bind-Value="userModel.UserId"></InputNumber>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+</div>
+
+@code {
+
+    private UserModel userModel = new();
+    private UserLoginModel userLoginModel = new();
+    private string? userEmail { get; set; }
+    private bool hideLoad = false;
+    private bool hideContent = true;
+
+    private int UserId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        userModel.UserId = UserLoginServices.CurrentUser.UserId;
+        userModel.UserEmail = UserLoginServices.CurrentUser.Username;
+        await SearchUserInCache();
+        await SearchUserFromAPI();
+        hideLoad = true;
+        hideContent = false;
+    }
+
+
+    private async Task HandleValidSubmit()
+    {
+        if (userModel is not null && userLoginModel is not null)
+        {
+            await AddUserDetails();
+            await AddUserDetailsToCache();
+        }
+    }
+
+    private async Task AddUserDetails()
+    {
+        await Task.Delay(0);
+        await UserServices.CreateUserAsync(userModel, UserLoginServices.CurrentUser.UserToken);
+    }
+
+    private async Task AddUserDetailsToCache()
+    {
+        if (UserServices.CurrentUserDetails is not null)
+        {
+            await UserLoginCacheServices.AddUserDetails(userModel);
+        }
+    }
+
+    private async Task SearchUserInCache()
+    {
+        await Task.Delay(0);
+        await UserLoginCacheServices.ReadUserDetails(userModel.UserId);
+        if (UserLoginCacheServices.UserDetails is not null)
+        {
+            userModel = UserLoginCacheServices.UserDetails;
+            UserServices.CurrentUserDetails = userModel;
+        }
+    }
+
+    private async Task SearchUserFromAPI()
+    {
+        if (UserServices.CurrentUserDetails is null)
+        {
+            await UserServices.ReadAsyncById(userModel.UserId);
+            if (UserServices.CurrentUserDetails is not null)
+            {
+                userModel = UserServices.CurrentUserDetails;
+                await AddUserDetailsToCache();
+            }
+        }
+    }
+
+}

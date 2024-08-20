@@ -1,14 +1,10 @@
-﻿@page "/endereco"
+﻿
 @attribute [StreamRendering]
-
 
 @inject IAddressServices AddressServices
 @inject IAddressTypeServices AddressTypeServices
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
-
-
-
 
 @if (currentUser is not null)
 {
@@ -72,7 +68,6 @@ else
 
 
 @code {
-
     private AddressModel? address = new();
     private UserLoginModel? currentUser { get; set; }
     private bool isSubmitted = false;
@@ -80,15 +75,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // await Task.Delay(5000);
         currentUser = UserLoginServices.CurrentUser;
         if(currentUser is null)
         {
             NavigationManager.NavigateTo("login");
         }
         await AddressTypeServices.AddressTypeReadAll();
-        addressTypesModel = AddressTypeServices.AddressTypes;
-        
+        addressTypesModel = AddressTypeServices.AddressTypes;      
     }
 
     private void HandleSuccess()
@@ -97,7 +90,6 @@ else
         address.UserId = currentUser.UserId;
         address.CreatedBy = currentUser.UserId;
         address.ModifiedBy = currentUser.UserId;
-
     }
 
     private void HandleFailure()
@@ -107,8 +99,6 @@ else
 
     private async Task AddUserAddress()
     {
-        // isSubmitted = true;
         await AddressServices.CreateUserAddressAsync(address);
-
     }
 }
