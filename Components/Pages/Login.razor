@@ -17,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <h3 class="text-center">Login</h3>
-            <EditForm Enhance Model="user" FormName="Login" OnValidSubmit="LoginUserAsync">
+            <EditForm Enhance Model="userLogin" FormName="Login" OnValidSubmit="LoginUserAsync">
                 <DataAnnotationsValidator></DataAnnotationsValidator>
                 <div class="form-group">
                  @*    <label for="email">Email address</label> *@
@@ -25,11 +25,11 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-                        <InputText @bind-Value="@user.Username" class="form-control" placeholder="Email" ></InputText>
+                        <InputText @bind-Value="@userLogin.Username" class="form-control" placeholder="Email"></InputText>
                         
                     </div>
                     <div class="col">
-                        <ValidationMessage For="() => user.Username"></ValidationMessage>
+                        <ValidationMessage For="() => userLogin.Username"></ValidationMessage>
                     </div>
                 </div>
                 <div class="form-group">
@@ -38,12 +38,12 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         </div>
-                        <InputText @bind-Value="@user.Password" class="form-control" placeholder="Senha"></InputText>
+                        <InputText @bind-Value="@userLogin.Password" class="form-control" placeholder="Senha"></InputText>
                         
                         @* <input type="password" class="form-control" id="password" placeholder="Senha"> *@
                     </div>
                     <div class="col">
-                        <ValidationMessage For="() => user.Password"></ValidationMessage>
+                        <ValidationMessage For="() => userLogin.Password"></ValidationMessage>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -65,7 +65,7 @@
 
 @code {
     [SupplyParameterFromForm(FormName = "Login")]
-    private UserLoginModel user { get; set; } = new();
+    private UserLoginModel userLogin { get; set; } = new();
     private String message = String.Empty;
     private bool isVisible = false;
     private bool hideLoad = false;
@@ -73,64 +73,29 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(500);
-        if (UserLoginServices.CurrentUser is null)
-        {
-            await CacheServices.SearchActiveSession();
-            UserLoginServices.CurrentUser = CacheServices.CurrentUser;
-
-        }
-        if(UserLoginServices.CurrentUser is null)
-        {
-            // await UserLoginServices.LogOut();
-            message = MessageHandler.Message;
-            if (!string.IsNullOrEmpty(message))
-            {
-                isVisible = true;
-            }
-
-        }
-        else
-        {
-            user = UserLoginServices.CurrentUser;
-            user.Password = string.Empty;
-            await LoginUserAsync();
-        }
+        await Task.Delay(0);
         hideLoad = true;
         hideContent = false;
+    } 
+
+    private async Task LoginUserAsync()
+    {
+        await Task.Delay(0);
+        await FetchUser();
     }
 
-
-    private async Task  LoginUserAsync()
+    private async Task FetchUser()
     {
-        if (UserLoginServices.CurrentUser is null)
-        {
-            await CacheServices.SearchActiveSession();
-        }
-        ArgumentNullException.ThrowIfNull(user);
-        if (UserLoginServices.CurrentUser is null)
-        {
-            await UserLoginServices.ReadAsync(user);
-            ArgumentNullException.ThrowIfNull(UserLoginServices.CurrentUser);
-            await CacheServices.CreateUserSession(UserLoginServices.CurrentUser);
-        }
-        
-        isVisible = true;
-        message = MessageHandler.Message;
-
+        await UserLoginServices.ReadAsync(userLogin);
+        await CreateSession();
+        NavigationManager.NavigateTo("/");
+    }
+    private async Task CreateSession()
+    {
+        await Task.Delay(0);
         if (UserLoginServices.CurrentUser is not null)
         {
-            await NavService.AddNavItem
-            (
-                new NavItemModel
-                    {
-                        Text = "Sair",
-                        Url = "Sair",
-                        Icon = "bi bi-box-arrow-right",
-                        IsVisible = true
-                    }
-            );
-            NavigationManager.NavigateTo("perfil");
+            await CacheServices.CreateUserSession(UserLoginServices.CurrentUser);
         }
-    } 
+    }
 }

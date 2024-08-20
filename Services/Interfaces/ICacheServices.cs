@@ -13,5 +13,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         Task CreateUserSession(UserLoginModel userLoginModel);
         Task LogOut();
         Task SearchActiveSession();
+        Task AddUserDetails(UserModel model);
     }
 }

@@ -123,12 +123,7 @@
             ArgumentNullException.ThrowIfNull(register);
             await UserLoginServices.VerifyAsync(register);
             message = MessageHandler.Message;
-            NavigationManager.NavigateTo("login");
         }
-        else
-        {
-            NavigationManager.NavigateTo("login");
-        }
-
+        NavigationManager.NavigateTo("login");
     }
 }
