@@ -67,6 +67,8 @@ namespace EconomizzeHybrid.Services.Classes
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", userToken);
                 var response = await httpClient.PostAsJsonAsync(url, userModel);
                 var jsonResponse = await response.Content.ReadAsStringAsync();
+
+
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUserDetails = JsonSerializer.Deserialize<UserModel>(jsonResponse, options);
