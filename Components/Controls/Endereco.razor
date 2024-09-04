@@ -5,6 +5,7 @@
 @inject IAddressTypeServices AddressTypeServices
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
+@inject CacheServices CacheServices
 
 @if (currentUser is not null)
 {
@@ -12,7 +13,7 @@
     <SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
     <hr />
 
-    <EditForm FormName="AddAddress" Model="address" OnValidSubmit="AddUserAddress">
+    <EditForm FormName="AddAddress" Model="address" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
         <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
@@ -57,7 +58,7 @@
         <InputNumber hidden @bind-Value="address.CreatedBy"></InputNumber>
         <InputNumber hidden @bind-Value="address.ModifiedBy"></InputNumber>
 
-        <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Buscar Cep</button>
+        <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Submit</button>
     </EditForm>
 }
 else
@@ -81,7 +82,9 @@ else
             NavigationManager.NavigateTo("login");
         }
         await AddressTypeServices.AddressTypeReadAll();
-        addressTypesModel = AddressTypeServices.AddressTypes;      
+        addressTypesModel = AddressTypeServices.AddressTypes;
+        await SearchAddressInCache();
+        await SearchAddressFromAPI();
     }
 
     private void HandleSuccess()
@@ -97,8 +100,50 @@ else
         address = new();
     }
 
+    private async Task HandleValidSubmit()
+    {
+        if (address is not null && currentUser is not null)
+        {
+            await AddUserAddress();
+            await AddUserAddressToCache();
+        }
+    }
+
     private async Task AddUserAddress()
     {
+        await Task.Delay(0);
         await AddressServices.CreateUserAddressAsync(address);
+    }
+
+    private async Task AddUserAddressToCache()
+    {
+        if (AddressServices.CurrentAddress is not null)
+        {
+            await CacheServices.AddUserAddress(address);
+        }
+    }
+
+    private async Task SearchAddressInCache()
+    {
+        await Task.Delay(0);
+        await CacheServices.ReadAddress(currentUser.UserId);
+        if (CacheServices.UserAddress is not null)
+        {
+            address = CacheServices.UserAddress;
+            AddressServices.CurrentAddress = address;
+        }
+    }
+
+    private async Task SearchAddressFromAPI()
+    {
+        if (AddressServices.CurrentAddress is null)
+        {
+            await AddressServices.ReadAsyncById(currentUser.UserId);
+            if (AddressServices.CurrentAddress is not null)
+            {
+                address = AddressServices.CurrentAddress;
+                await AddUserAddressToCache();
+            }
+        }
     }
 }

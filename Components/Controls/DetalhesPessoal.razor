@@ -1,7 +1,7 @@
 ﻿@inject IUserLoginServices UserLoginServices
 @inject IUserServices UserServices
 @inject NavigationManager NavigationManager
-@inject UserLoginCacheServices UserLoginCacheServices
+@inject CacheServices CacheServices
 
 
 <div class="d-flex justify-content-center">
@@ -107,17 +107,17 @@
     {
         if (UserServices.CurrentUserDetails is not null)
         {
-            await UserLoginCacheServices.AddUserDetails(userModel);
+            await CacheServices.AddUserDetails(userModel);
         }
     }
 
     private async Task SearchUserInCache()
     {
         await Task.Delay(0);
-        await UserLoginCacheServices.ReadUserDetails(userModel.UserId);
-        if (UserLoginCacheServices.UserDetails is not null)
+        await CacheServices.ReadUserDetails(userModel.UserId);
+        if (CacheServices.UserDetails is not null)
         {
-            userModel = UserLoginCacheServices.UserDetails;
+            userModel = CacheServices.UserDetails;
             UserServices.CurrentUserDetails = userModel;
         }
     }

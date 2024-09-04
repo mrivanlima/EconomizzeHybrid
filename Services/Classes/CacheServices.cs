@@ -5,15 +5,16 @@ using EconomizzeHybrid.SqlLiteData;
 
 namespace EconomizzeHybrid.Services.Classes
 {
-    public class UserLoginCacheServices : ICacheServices
+    public class CacheServices : ICacheServices
     {
         private readonly ICacheFactory _cacheFactory;
         private readonly MessageHandler _messageHandler;
         public UserLoginModel? CurrentUser { get; set; }
         public UserModel? UserDetails { get; set; }
+        public AddressModel? UserAddress { get; set; }
 
 
-        public UserLoginCacheServices(ICacheFactory cacheFactory, 
+        public CacheServices(ICacheFactory cacheFactory, 
                                       MessageHandler messageHandler)
         {
             _messageHandler = messageHandler;
@@ -148,6 +149,45 @@ namespace EconomizzeHybrid.Services.Classes
 
         }
 
+        public async Task ReadAddress(int userId)
+        {
+            var connection = _cacheFactory.GetConnection();
+            try
+            {
+                connection.Open();
+                var sql = "SELECT  " +
+                            "UserId, " +
+                            "StreetId, " +
+                            "ZipCode, " +
+                            "StreetName, " +
+                            "Complement, " +
+                            "NeighborhoodName, " +
+                            "CityName, " +
+                            "StateName, " +
+                            "AddressTypeId, " +
+                            "MainAddress " +
+                          "FROM Address " +
+                          "WHERE UserId = @UserId " +
+                          "LIMIT 1";
+                var parameters = new
+                {
+                    UserId = userId,
+                };
+
+                UserAddress = await connection.QuerySingleOrDefaultAsync<AddressModel>(sql, parameters);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+
+                connection.Close();
+            }
+
+        }
+
         public async Task AddUserDetails(UserModel model)
         {
             var connection = _cacheFactory.GetConnection();
@@ -207,6 +247,72 @@ namespace EconomizzeHybrid.Services.Classes
             finally
             {
 
+                connection.Close();
+            }
+        }
+
+        public async Task AddUserAddress(AddressModel model)
+        {
+            var connection = _cacheFactory.GetConnection();
+            try
+            {
+                connection.Open();
+                var sql = "INSERT INTO Address(" +
+                    "                        UserId, " +
+                                            "StreetId, " +
+                                            "ZipCode, " +
+                                            "StreetName, " +
+                                            "Complement, " +
+                                            "NeighborhoodName, " +
+                                            "CityName, " +
+                                            "StateName, " +
+                                            "AddressTypeId, " +
+                                            "MainAddress)" +
+                                       "VALUES (" +
+                                           "@UserId, " +
+                                           "@StreetId, " +
+                                           "@ZipCode," +
+                                           "@StreetName, " +
+                                           "@Complement, " +
+                                           "@NeighborhoodName, " +
+                                           "@CityName, " +
+                                           "@StateName, " +
+                                           "@AddressTypeId, " +
+                                           "@MainAddress)" +
+                                       "ON CONFLICT(UserId) DO UPDATE " +
+                                       "SET StreetId = @StreetId, " +
+                                           "ZipCode = @ZipCode," +
+                                           "StreetName = @StreetName, " +
+                                           "Complement = @Complement, " +
+                                           "NeighborhoodName = @NeighborhoodName, " +
+                                           "CityName = @CityName, " +
+                                           "StateName = @StateName, " +
+                                           "AddressTypeId = @AddressTypeId, " +
+                                           "MainAddress = @MainAddress";
+
+
+                var parameters = new
+                {
+                    UserId = model.UserId,
+                    StreetId = model.StreetId,
+                    ZipCode = model.ZipCode,
+                    StreetName = model.StreetName,
+                    Complement = model.Complement,
+                    NeighborhoodName = model.NeighborhoodName,
+                    CityName = model.CityName,
+                    StateName = model.StateName,
+                    AddressTypeId = model.AddressTypeId,
+                    MainAddress = model.MainAddress
+                };
+
+                await connection.ExecuteAsync(sql, parameters);
+            }
+            catch (Exception ex)
+            {
+                _messageHandler.Message = ex.Message;
+            }
+            finally
+            {
                 connection.Close();
             }
         }

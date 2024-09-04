@@ -14,16 +14,21 @@ namespace EconomizzeHybrid.Services.Classes
     public class AddressServices : IAddressServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
+        private JsonSerializerOptions _jsonSerializerOptions;
 
         public AddressModel? CurrentAddress { get; set; }
         public SearchZipCodeModel CurrentZipCode { get; set; }
         public string Message { get; set; }
 
-        public AddressServices(IHttpClientFactory httpClientFactory, JsonSerializerOptions jsonSerializerOptions)
+        public AddressServices(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _jsonSerializerOptions = jsonSerializerOptions;
+            //_jsonSerializerOptions = jsonSerializerOptions;
+            _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true
+            };
             Message = String.Empty;
         }
 
@@ -31,6 +36,33 @@ namespace EconomizzeHybrid.Services.Classes
         {
             CurrentZipCode = currentZipCode;
             var url = $"endereco/{CurrentZipCode.ZipCode}";
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("economizze");
+                var response = await httpClient.GetAsync(url);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    CurrentAddress = JsonSerializer.Deserialize<AddressModel>(jsonResponse, _jsonSerializerOptions);
+                }
+                else
+                {
+                    CurrentAddress = null;
+                    Message = jsonResponse.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Message = ex.Message;
+            }
+        }
+
+        public async Task ReadAsyncById(int id)
+        {
+            var message = string.Empty;
+            var url = $"usuarioendereco/{id}";
 
             try
             {

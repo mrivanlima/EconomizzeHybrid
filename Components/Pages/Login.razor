@@ -82,13 +82,21 @@
     {
         await Task.Delay(0);
         await FetchUser();
+        if (UserLoginServices.CurrentUser is not null)
+        {
+            await CreateSession();
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            message = MessageHandler.Message;
+            isVisible = true;
+        }
     }
 
     private async Task FetchUser()
     {
         await UserLoginServices.ReadAsync(userLogin);
-        await CreateSession();
-        NavigationManager.NavigateTo("/");
     }
     private async Task CreateSession()
     {
