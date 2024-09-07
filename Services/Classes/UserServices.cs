@@ -15,13 +15,15 @@ namespace EconomizzeHybrid.Services.Classes
     internal class UserServices : IUserServices
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly MessageHandler _messageHandler;
         public UserModel? CurrentUserDetails { get; set; }
         public string Message { get; set; }
         private JsonSerializerOptions options { get; set; }
 
-        public UserServices(IHttpClientFactory httpClientFactory)
+        public UserServices(IHttpClientFactory httpClientFactory, MessageHandler messageHandler)
         {
             _httpClientFactory = httpClientFactory;
+            _messageHandler = messageHandler;
             options = new JsonSerializerOptions
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
@@ -76,7 +78,7 @@ namespace EconomizzeHybrid.Services.Classes
                 else
                 {
                     CurrentUserDetails = null;
-                    Message = jsonResponse.ToString();
+                    _messageHandler.Message = jsonResponse.ToString();
                 }
                 //_navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 

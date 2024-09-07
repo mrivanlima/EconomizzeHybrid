@@ -6,6 +6,7 @@
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
 @inject CacheServices CacheServices
+@inject MessageHandler MessageHandler
 
 @if (currentUser is not null)
 {
@@ -60,6 +61,9 @@
 
         <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Submit</button>
     </EditForm>
+    <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
+        <p>@message</p>
+    </div>
 }
 else
 {
@@ -73,6 +77,8 @@ else
     private UserLoginModel? currentUser { get; set; }
     private bool isSubmitted = false;
     private IEnumerable<AddressTypeModel>? addressTypesModel;
+    private String message = String.Empty;
+    private bool isVisible = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -106,6 +112,8 @@ else
         {
             await AddUserAddress();
             await AddUserAddressToCache();
+            message = MessageHandler.Message;
+            isVisible = true;
         }
     }
 
