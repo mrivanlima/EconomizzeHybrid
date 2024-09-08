@@ -306,6 +306,7 @@ namespace EconomizzeHybrid.Services.Classes
                 };
 
                 await connection.ExecuteAsync(sql, parameters);
+                _messageHandler.Message = "endereco adicionado!";
             }
             catch (Exception ex)
             {
