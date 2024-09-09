@@ -84,6 +84,7 @@
         await FetchUser();
         if (UserLoginServices.CurrentUser is not null)
         {
+            userLogin = UserLoginServices.CurrentUser;
             await CreateSession();
             NavigationManager.NavigateTo("/");
         }
@@ -103,7 +104,7 @@
         await Task.Delay(0);
         if (UserLoginServices.CurrentUser is not null)
         {
-            await CacheServices.CreateUserSession(UserLoginServices.CurrentUser);
+            await CacheServices.CreateUserSession(userLogin);
         }
     }
 }
