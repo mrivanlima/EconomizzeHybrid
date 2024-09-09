@@ -79,6 +79,7 @@ else
     private IEnumerable<AddressTypeModel>? addressTypesModel;
     private String message = String.Empty;
     private bool isVisible = false;
+    private bool searchedThroughCache;
 
     protected override async Task OnInitializedAsync()
     {
@@ -139,6 +140,7 @@ else
         {
             address = CacheServices.UserAddress;
             AddressServices.CurrentAddress = address;
+            searchedThroughCache = true;
         }
     }
 
@@ -152,6 +154,7 @@ else
                 address = AddressServices.CurrentAddress;
                 await AddUserAddressToCache();
             }
+
         }
     }
 }

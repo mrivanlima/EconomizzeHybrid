@@ -45,6 +45,7 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUserDetails =  JsonSerializer.Deserialize<UserModel>(jsonResponse, options);
+                    //CurrentUserDetails.UserId = id;
                 }
                 else
                 {

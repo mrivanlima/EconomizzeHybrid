@@ -80,7 +80,6 @@ namespace EconomizzeHybrid.Services.Classes
                     CurrentAddress = null;
                     Message = jsonResponse.ToString();
                 }
-
             }
             catch (Exception ex)
             {
@@ -106,7 +105,6 @@ namespace EconomizzeHybrid.Services.Classes
                     CurrentAddress = null;
                     _messageHandler.Message = jsonResponse.ToString();
                 }
-
             }
             catch (Exception ex)
             {

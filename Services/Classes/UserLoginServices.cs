@@ -13,6 +13,7 @@ namespace EconomizzeHybrid.Services.Classes
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly MessageHandler _messageHandler;
+        private IUserServices _userServices;
         public UserLoginModel? CurrentUser { get; set; }
         public RegisterModel? RegisteredUser { get; set; }
         private  JsonSerializerOptions Options {get; set;}
@@ -21,7 +22,8 @@ namespace EconomizzeHybrid.Services.Classes
 
         public UserLoginServices(IHttpClientFactory httpClientFactory, 
                                  NavService navService,
-                                 MessageHandler messageHandler)
+                                 MessageHandler messageHandler,
+                                 IUserServices userServices)
         {
             _httpClientFactory = httpClientFactory;
             _messageHandler = messageHandler;
@@ -33,6 +35,7 @@ namespace EconomizzeHybrid.Services.Classes
                 PropertyNameCaseInsensitive = true 
             };
             _navService = navService;
+            _userServices = userServices;
         }
         public async Task ReadAsync(UserLoginModel user)
         {
@@ -49,7 +52,7 @@ namespace EconomizzeHybrid.Services.Classes
 				}
                 else
                 {
-                    _messageHandler.Message = jsonResponse.ToString();
+                    CurrentUser = null;
                 }
 
             }
@@ -120,6 +123,7 @@ namespace EconomizzeHybrid.Services.Classes
         {
 
             CurrentUser = null;
+            _userServices.CurrentUserDetails = null;
             _messageHandler.Message = string.Empty;
         }
     }
