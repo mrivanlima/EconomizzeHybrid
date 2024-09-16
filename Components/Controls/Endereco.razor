@@ -17,6 +17,11 @@
     <EditForm FormName="AddAddress" Model="address" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
+        <InputText placeholder="CEP" @bind-Value="address.ZipCode" disabled="@isSubmitted" />
+        <div class="col">
+            <ValidationMessage For="() => address.ZipCode"></ValidationMessage>
+        </div>
+
         <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
         <div class="col">
             <ValidationMessage For="() => address.StreetName"></ValidationMessage>
@@ -59,11 +64,13 @@
         <InputNumber hidden @bind-Value="address.CreatedBy"></InputNumber>
         <InputNumber hidden @bind-Value="address.ModifiedBy"></InputNumber>
 
-        <button type="submit" class="btn btn-primary" disabled="@isSubmitted">Submit</button>
+        <div class="d-flex justify-content-start align-items-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+                <p style="@(AddressServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+            </span>
+        </div>
     </EditForm>
-    <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
-        <p>@message</p>
-    </div>
 }
 else
 {
@@ -72,89 +79,4 @@ else
 
 
 
-@code {
-    private AddressModel? address = new();
-    private UserLoginModel? currentUser { get; set; }
-    private bool isSubmitted = false;
-    private IEnumerable<AddressTypeModel>? addressTypesModel;
-    private String message = String.Empty;
-    private bool isVisible = false;
-    private bool searchedThroughCache;
 
-    protected override async Task OnInitializedAsync()
-    {
-        currentUser = UserLoginServices.CurrentUser;
-        if(currentUser is null)
-        {
-            NavigationManager.NavigateTo("login");
-        }
-        await AddressTypeServices.AddressTypeReadAll();
-        addressTypesModel = AddressTypeServices.AddressTypes;
-        await SearchAddressInCache();
-        await SearchAddressFromAPI();
-    }
-
-    private void HandleSuccess()
-    {
-        address = AddressServices.CurrentAddress;
-        address.UserId = currentUser.UserId;
-        address.CreatedBy = currentUser.UserId;
-        address.ModifiedBy = currentUser.UserId;
-    }
-
-    private void HandleFailure()
-    {
-        address = new();
-    }
-
-    private async Task HandleValidSubmit()
-    {
-        if (address is not null && currentUser is not null)
-        {
-            await AddUserAddress();
-            await AddUserAddressToCache();
-            message = MessageHandler.Message;
-            isVisible = true;
-        }
-    }
-
-    private async Task AddUserAddress()
-    {
-        await Task.Delay(0);
-        await AddressServices.CreateUserAddressAsync(address);
-    }
-
-    private async Task AddUserAddressToCache()
-    {
-        if (AddressServices.CurrentAddress is not null)
-        {
-            await CacheServices.AddUserAddress(address);
-        }
-    }
-
-    private async Task SearchAddressInCache()
-    {
-        await Task.Delay(0);
-        await CacheServices.ReadAddress(currentUser.UserId);
-        if (CacheServices.UserAddress is not null)
-        {
-            address = CacheServices.UserAddress;
-            AddressServices.CurrentAddress = address;
-            searchedThroughCache = true;
-        }
-    }
-
-    private async Task SearchAddressFromAPI()
-    {
-        if (AddressServices.CurrentAddress is null)
-        {
-            await AddressServices.ReadAsyncById(currentUser.UserId);
-            if (AddressServices.CurrentAddress is not null)
-            {
-                address = AddressServices.CurrentAddress;
-                await AddUserAddressToCache();
-            }
-
-        }
-    }
-}

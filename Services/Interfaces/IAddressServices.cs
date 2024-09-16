@@ -15,5 +15,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         AddressModel CurrentAddress { get; set; }
         SearchZipCodeModel CurrentZipCode { get; set; }
         string Message { get; set; }
+        bool isError { get; set; }
     }
 }

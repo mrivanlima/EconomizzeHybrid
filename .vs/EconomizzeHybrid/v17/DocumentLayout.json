@@ -1,60 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\",
+  "WorkspaceRootPath": "C:\\Development\\EconomizzeHybrid\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\services\\classes\\addressservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\addressservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\services\\classes\\cacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\cacheservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\classes\\userloginsqliteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\userloginsqliteservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\components\\controls\\endereco.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\controls\\endereco.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\services\\classes\\userloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:services\\classes\\userloginservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\components\\controls\\detalhespessoal.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\controls\\detalhespessoal.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\criar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\criar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\components\\controls\\endereco.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\controls\\endereco.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\sqllitedata\\sqlliteconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:sqllitedata\\sqlliteconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\sqllitedata\\idatabaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:sqllitedata\\idatabaseconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\model\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:model\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\pages\\address.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\pages\\address.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\economizzehybrid\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.95\\targets\\Microsoft.Android.Sdk.AssemblyResolution.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mriva\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.21\\buildTransitive\\Microsoft.Maui.Resizetizer.After.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|c:\\development\\economizzehybrid\\components\\controls\\detalhespessoal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FA05BD63-2F7F-482F-8604-625FA39827BD}|EconomizzeHybrid.csproj|solutionrelative:components\\controls\\detalhespessoal.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -64,188 +34,100 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Home.razor",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Home.razor",
-              "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAADQAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T17:54:00.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserLoginSqliteServices.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginSqliteServices.cs",
-              "RelativeDocumentMoniker": "Services\\Classes\\UserLoginSqliteServices.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginSqliteServices.cs",
-              "RelativeToolTip": "Services\\Classes\\UserLoginSqliteServices.cs",
-              "ViewState": "AQIAADsAAAAAAAAAAAAwwEUAAAAQAAAA",
+              "Title": "AddressServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Services\\Classes\\AddressServices.cs",
+              "RelativeDocumentMoniker": "Services\\Classes\\AddressServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Services\\Classes\\AddressServices.cs",
+              "RelativeToolTip": "Services\\Classes\\AddressServices.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAIA4wGcAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T15:48:48.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserLoginServices.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginServices.cs",
-              "RelativeDocumentMoniker": "Services\\Classes\\UserLoginServices.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Services\\Classes\\UserLoginServices.cs",
-              "RelativeToolTip": "Services\\Classes\\UserLoginServices.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T00:11:20.302Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RegisterModel.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Model\\RegisterModel.cs",
-              "RelativeDocumentMoniker": "Model\\RegisterModel.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Model\\RegisterModel.cs",
-              "RelativeToolTip": "Model\\RegisterModel.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAIBJwAkAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T15:19:16.316Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Criar.razor",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Criar.razor",
-              "RelativeDocumentMoniker": "Components\\Pages\\Criar.razor",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Criar.razor",
-              "RelativeToolTip": "Components\\Pages\\Criar.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T15:04:05.232Z",
+              "WhenOpened": "2024-09-16T19:06:00.329Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Login.razor",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Login.razor",
-              "RelativeDocumentMoniker": "Components\\Pages\\Login.razor",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Login.razor",
-              "RelativeToolTip": "Components\\Pages\\Login.razor",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAAAFoAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T03:20:26.807Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AndroidManifest.xml",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Platforms\\Android\\AndroidManifest.xml",
-              "RelativeDocumentMoniker": "Platforms\\Android\\AndroidManifest.xml",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Platforms\\Android\\AndroidManifest.xml",
-              "RelativeToolTip": "Platforms\\Android\\AndroidManifest.xml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2024-08-09T05:14:46.933Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Microsoft.Maui.Resizetizer.After.targets",
-              "DocumentMoniker": "C:\\Users\\mriva\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.21\\buildTransitive\\Microsoft.Maui.Resizetizer.After.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\Users\\mriva\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.21\\buildTransitive\\Microsoft.Maui.Resizetizer.After.targets",
-              "ToolTip": "C:\\Users\\mriva\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.21\\buildTransitive\\Microsoft.Maui.Resizetizer.After.targets",
-              "RelativeToolTip": "..\\..\\..\\Users\\mriva\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.21\\buildTransitive\\Microsoft.Maui.Resizetizer.After.targets",
-              "ViewState": "AQIAAGQCAAAAAAAAAAAgwG0CAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2024-08-09T03:55:18.4Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Address.razor",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Address.razor",
-              "RelativeDocumentMoniker": "Components\\Pages\\Address.razor",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Pages\\Address.razor",
-              "RelativeToolTip": "Components\\Pages\\Address.razor",
-              "ViewState": "AQIAABgAAAAAAAAAAIBJwFQAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T03:55:06.657Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Microsoft.Android.Sdk.AssemblyResolution.targets",
-              "DocumentMoniker": "C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.95\\targets\\Microsoft.Android.Sdk.AssemblyResolution.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.95\\targets\\Microsoft.Android.Sdk.AssemblyResolution.targets",
-              "ToolTip": "C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.95\\targets\\Microsoft.Android.Sdk.AssemblyResolution.targets",
-              "RelativeToolTip": "..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.95\\targets\\Microsoft.Android.Sdk.AssemblyResolution.targets",
-              "ViewState": "AQIAAMQAAAAAAAAAAAAgwNAAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2024-08-09T03:44:58.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MauiProgram.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\MauiProgram.cs",
-              "RelativeDocumentMoniker": "MauiProgram.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\MauiProgram.cs",
-              "RelativeToolTip": "MauiProgram.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAgwC4AAABBAAAA",
+              "Title": "CacheServices.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Services\\Classes\\CacheServices.cs",
+              "RelativeDocumentMoniker": "Services\\Classes\\CacheServices.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Services\\Classes\\CacheServices.cs",
+              "RelativeToolTip": "Services\\Classes\\CacheServices.cs",
+              "ViewState": "AQIAAO4AAAAAAAAAAAAhwPgAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T02:53:51.378Z",
+              "WhenOpened": "2024-09-16T19:06:00.354Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\Components\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "Components\\Layout\\NavMenu.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T00:11:30.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IDatabaseConnectionFactory.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\SqlLiteData\\IDatabaseConnectionFactory.cs",
-              "RelativeDocumentMoniker": "SqlLiteData\\IDatabaseConnectionFactory.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\SqlLiteData\\IDatabaseConnectionFactory.cs",
-              "RelativeToolTip": "SqlLiteData\\IDatabaseConnectionFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAIAAAA",
+              "DocumentIndex": 2,
+              "Title": "Endereco.razor.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\Endereco.razor.cs",
+              "RelativeDocumentMoniker": "Components\\Controls\\Endereco.razor.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\Endereco.razor.cs",
+              "RelativeToolTip": "Components\\Controls\\Endereco.razor.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAzwCcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T02:42:17.637Z",
+              "WhenOpened": "2024-09-16T01:47:49.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Endereco.razor",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\Endereco.razor",
+              "RelativeDocumentMoniker": "Components\\Controls\\Endereco.razor",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\Endereco.razor",
+              "RelativeToolTip": "Components\\Controls\\Endereco.razor",
+              "ViewState": "AQIAACkAAAAAAAAAAAAUwDMAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-16T02:15:52.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DetalhesPessoal.razor.cs",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\DetalhesPessoal.razor.cs",
+              "RelativeDocumentMoniker": "Components\\Controls\\DetalhesPessoal.razor.cs",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\DetalhesPessoal.razor.cs",
+              "RelativeToolTip": "Components\\Controls\\DetalhesPessoal.razor.cs",
+              "ViewState": "AQIAADkAAAAAAAAAAAAhwEMAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-16T01:31:29.738Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SqlLiteConnection.cs",
-              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\SqlLiteData\\SqlLiteConnection.cs",
-              "RelativeDocumentMoniker": "SqlLiteData\\SqlLiteConnection.cs",
-              "ToolTip": "C:\\Development\\EconomizzeHybrid\\EconomizzeHybrid\\SqlLiteData\\SqlLiteConnection.cs",
-              "RelativeToolTip": "SqlLiteData\\SqlLiteConnection.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAgwAcAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-08T23:26:52.964Z",
+              "Title": "DetalhesPessoal.razor",
+              "DocumentMoniker": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\DetalhesPessoal.razor",
+              "RelativeDocumentMoniker": "Components\\Controls\\DetalhesPessoal.razor",
+              "ToolTip": "C:\\Development\\EconomizzeHybrid\\Components\\Controls\\DetalhesPessoal.razor",
+              "RelativeToolTip": "Components\\Controls\\DetalhesPessoal.razor",
+              "ViewState": "AQIAADYAAAAAAAAAAMBVwEIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-07T20:02:06.057Z",
               "EditorCaption": ""
             }
           ]

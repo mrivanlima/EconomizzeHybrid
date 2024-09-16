@@ -17,8 +17,8 @@ namespace EconomizzeHybrid.Services.Classes
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly MessageHandler _messageHandler;
         public UserModel? CurrentUserDetails { get; set; }
-        public string Message { get; set; }
         private JsonSerializerOptions options { get; set; }
+        public bool isError {  get; set; }
 
         public UserServices(IHttpClientFactory httpClientFactory, MessageHandler messageHandler)
         {
@@ -29,7 +29,7 @@ namespace EconomizzeHybrid.Services.Classes
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 PropertyNameCaseInsensitive = true
             };
-            Message = string.Empty;
+            isError = false;
         }
 
         public async Task ReadAsyncById(int id)
@@ -50,14 +50,14 @@ namespace EconomizzeHybrid.Services.Classes
                 else
                 {
                     CurrentUserDetails = null;
-                    Message = jsonResponse.ToString();
+                    _messageHandler.Message = jsonResponse.ToString();
                 }
                 //_navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
 
             }
             catch (Exception ex)
             {
-                Message = ex.Message;
+                _messageHandler.Message = ex.Message;
             }
         }
 
@@ -75,18 +75,18 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUserDetails = JsonSerializer.Deserialize<UserModel>(jsonResponse, options);
+                    _messageHandler.Message = "Sucesso!";
                 }
                 else
                 {
+                    isError = true;
                     CurrentUserDetails = null;
                     _messageHandler.Message = jsonResponse.ToString();
                 }
-                //_navService.AddNavItem(new NavItem { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
-
             }
             catch (Exception ex)
             {
-                Message = ex.Message;
+                _messageHandler.Message = ex.Message;
             }
         }
     }

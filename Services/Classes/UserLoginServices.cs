@@ -121,7 +121,6 @@ namespace EconomizzeHybrid.Services.Classes
 
         public async Task LogOut()
         {
-
             CurrentUser = null;
             _userServices.CurrentUserDetails = null;
             _messageHandler.Message = string.Empty;
