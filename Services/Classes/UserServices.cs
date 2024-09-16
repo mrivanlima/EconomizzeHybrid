@@ -29,7 +29,6 @@ namespace EconomizzeHybrid.Services.Classes
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 PropertyNameCaseInsensitive = true
             };
-            isError = false;
         }
 
         public async Task ReadAsyncById(int id)
@@ -74,6 +73,7 @@ namespace EconomizzeHybrid.Services.Classes
 
                 if (response.IsSuccessStatusCode)
                 {
+                    isError = false;
                     CurrentUserDetails = JsonSerializer.Deserialize<UserModel>(jsonResponse, options);
                     _messageHandler.Message = "Sucesso!";
                 }

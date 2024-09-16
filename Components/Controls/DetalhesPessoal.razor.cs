@@ -1,6 +1,5 @@
 using EconomizzeHybrid.Model;
 using EconomizzeHybrid.Services.Classes;
-using Microsoft.AspNetCore.Components;
 
 namespace EconomizzeHybrid.Components.Controls
 {
@@ -13,61 +12,64 @@ namespace EconomizzeHybrid.Components.Controls
         private bool hideContent = true;
         private String message = String.Empty;
         private bool isVisible = false;
+
         private int UserId { get; set; }
         #endregion
 
+        #region INITIALIZE
         protected override async Task OnInitializedAsync()
         {
             //set userModel
             userModel.UserId = UserLoginServices.CurrentUser.UserId;
             userModel.UserEmail = UserLoginServices.CurrentUser.Username;
 
-            //search in cache, if not there then search API
+            //search through cache then API for any details already registered
             await SearchUserInCache();
             await SearchUserFromAPI();
 
             hideLoad = true;
             hideContent = false;
         }
+        #endregion
 
         #region SUBMIT
         private async Task HandleValidSubmit()
         {
-            //if valid user, add details to cache
+            //if valid user with valid details filled
             if (userModel is not null && userLoginModel is not null)
             {
+                //add details to API and then cache
                 await AddUserDetails();
                 await AddUserDetailsToCache();
 
-                //display success or error message
+                //display success / error message
                 message = MessageHandler.Message;
                 isVisible = true;
             }
 
-            //set time that alert stays on screen
+            //function called to keep alert up for set amount of time
             OnParametersSetAsync();
         }
         #endregion
 
-        #region STYLE FUNCTIONS
+        #region STYLE
         private string GetStyle()
         {
-            //alert box color is red if error while adding details, green if no errors
+            //if a submit error is detected, red background. If not then green
             var color = UserServices.isError ? "background-color:#FF928D;" : "background-color:#8DFFB6;";
 
-            //display block when submit button is pressed
+            //display block on valid submit
             var display = isVisible ? "display:block;" : "display:none;";
 
-            //return string in style for the CSS to work properly
+            //return css string
             return color + " " + display;
         }
 
         protected override async Task OnParametersSetAsync()
         {
-            //when alert box is visible
+            //if block is visible, wait 7.5 seconds before hiding again
             if (isVisible)
             {
-                //wait 7.5 seconds and then hide the box
                 await Task.Delay(7500);
                 isVisible = false;
                 StateHasChanged();
@@ -75,30 +77,32 @@ namespace EconomizzeHybrid.Components.Controls
         }
         #endregion
 
-        #region ADD FUNCTIONS
+        #region ADD
         private async Task AddUserDetails()
         {
-            //Add user details to the API
+            //add details to the API
+            await Task.Delay(0);
             await UserServices.CreateUserAsync(userModel, UserLoginServices.CurrentUser.UserToken);
         }
 
         private async Task AddUserDetailsToCache()
         {
+            //if details have been properly added to API, add to cache
             if (UserServices.CurrentUserDetails is not null)
             {
-                //Add user details to the cache
                 await CacheServices.AddUserDetails(userModel);
             }
         }
         #endregion
 
-        #region SEARCH FUNCTIONS
+        #region SEARCH
         private async Task SearchUserInCache()
         {
-            //Read any details in the cache
+            //search for any information to be pulled from cache
+            await Task.Delay(0);
             await CacheServices.ReadUserDetails(userModel.UserId);
 
-            //If details have been acquired, then add to userModel
+            //if any information is pulled, add details to fields on load
             if (CacheServices.UserDetails is not null)
             {
                 userModel = CacheServices.UserDetails;
@@ -109,17 +113,20 @@ namespace EconomizzeHybrid.Components.Controls
 
         private async Task SearchUserFromAPI()
         {
-            //Continue if no details have been found in cache
+            //if no details are found in cache
             if (UserServices.CurrentUserDetails is null)
             {
-                //Read from cache
+                //search though API for details
                 await UserServices.ReadAsyncById(userModel.UserId);
 
-                //If CurrentUserDetails has information, add to userModel then add to cache
+                //if details are found in API
                 if (UserServices.CurrentUserDetails is not null)
                 {
+                    //set userModel
                     userModel = UserServices.CurrentUserDetails;
                     userModel.UserEmail = UserLoginServices.CurrentUser.Username;
+
+                    //add details to cache
                     await AddUserDetailsToCache();
                 }
             }

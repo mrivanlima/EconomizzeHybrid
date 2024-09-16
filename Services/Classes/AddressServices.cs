@@ -33,7 +33,6 @@ namespace EconomizzeHybrid.Services.Classes
                 PropertyNameCaseInsensitive = true
             };
             Message = String.Empty;
-            isError = false;
         }
 
         public async Task SearchZipCodeAsync(SearchZipCodeModel currentZipCode)
@@ -101,6 +100,7 @@ namespace EconomizzeHybrid.Services.Classes
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
+                    isError = false;
                     CurrentAddress = JsonSerializer.Deserialize<AddressModel>(jsonResponse, _jsonSerializerOptions);
                 }
                 else
