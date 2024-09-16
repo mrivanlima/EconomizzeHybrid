@@ -15,31 +15,32 @@ namespace EconomizzeHybrid.Components.Controls
         private bool isVisible = false;
         #endregion
 
+        #region INITIALIZE
         protected override async Task OnInitializedAsync()
         {
-            //Set currentUser
+            //set currentUser
             currentUser = UserLoginServices.CurrentUser;
 
-            //Send back to login page if no user is found
+            //if no user found, navigate to login
             if (currentUser is null)
             {
                 NavigationManager.NavigateTo("login");
             }
 
-            //Read all address types for the drop-down menu
+            //read all address types to supply the drop down menu
             await AddressTypeServices.AddressTypeReadAll();
             addressTypesModel = AddressTypeServices.AddressTypes;
 
-            //Search for Address in Cache, if not there then in API
+            //search through cache and then API for any address already registered
             await SearchAddressInCache();
             await SearchAddressFromAPI();
         }
+        #endregion
 
         #region SUBMIT
         private void HandleSuccess()
         {
-
-            //populate fields when zipCode is found
+            //if zip code is found, add all appropriate details to fields
             address = AddressServices.CurrentAddress;
             address.UserId = currentUser.UserId;
             address.CreatedBy = currentUser.UserId;
@@ -48,47 +49,47 @@ namespace EconomizzeHybrid.Components.Controls
 
         private void HandleFailure()
         {
-            //null address if zipcode cannot be found
+            //null address if zip code cannot be found
             address = new();
         }
 
         private async Task HandleValidSubmit()
         {
-            //if valid user, add address to cache
+            //if valid user with valid address filled
             if (address is not null && currentUser is not null)
             {
+                //add address to API and then cache
                 await AddUserAddress();
                 await AddUserAddressToCache();
 
-                //display success or error message
+                //display success / error message
                 message = MessageHandler.Message;
                 isVisible = true;
             }
 
-            //set time that alert stays on screen
+            //function called to keep alert up for set amount of time
             OnParametersSetAsync();
         }
         #endregion
 
-        #region STYLE FUNCTIONS
+        #region STYLE
         private string GetStyle()
         {
-            //alert box color is red if error while adding address, green if no errors
+            //if a submit error is detected, red background. If not then green
             var color = AddressServices.isError ? "background-color:#FF928D;" : "background-color:#8DFFB6;";
 
-            //display block when submit button is pressed
+            //display block on valid submit
             var display = isVisible ? "display:block;" : "display:none;";
 
-            //return string in style for the CSS to work properly
+            //return css string
             return color + " " + display;
         }
 
         protected override async Task OnParametersSetAsync()
         {
-            //when alert box is visible
+            //if block is visible, wait 7.5 seconds before hiding again
             if (isVisible)
             {
-                //wait 7.5 seconds and then hide the box
                 await Task.Delay(7500);
                 isVisible = false;
                 StateHasChanged();
@@ -96,30 +97,32 @@ namespace EconomizzeHybrid.Components.Controls
         }
         #endregion
 
-        #region ADD FUNCTIONS
+        #region ADD
         private async Task AddUserAddress()
         {
-            //Add user address to the API
+            //add address to the API
+            await Task.Delay(0);
             await AddressServices.CreateUserAddressAsync(address);
         }
 
         private async Task AddUserAddressToCache()
         {
+            //if address have been properly added to API, add to cache
             if (AddressServices.CurrentAddress is not null)
             {
-                //Add user address to the cache
                 await CacheServices.AddUserAddress(address);
             }
         }
         #endregion
 
-        #region SEARCH FUNCTIONS
+        #region SEARCH
         private async Task SearchAddressInCache()
         {
-            //Read any address in the cache
+            //search for any information to be pulled from cache
+            await Task.Delay(0);
             await CacheServices.ReadAddress(currentUser.UserId);
 
-            //If address has been acquired, then add to address
+            //if any information is pulled, add to address fields on load
             if (CacheServices.UserAddress is not null)
             {
                 address = CacheServices.UserAddress;
@@ -129,16 +132,19 @@ namespace EconomizzeHybrid.Components.Controls
 
         private async Task SearchAddressFromAPI()
         {
-            //Continue if no address has been found in cache
+            //if no address is found in cache
             if (AddressServices.CurrentAddress is null)
             {
-                //Read from cache
+                //search though API for address
                 await AddressServices.ReadAsyncById(currentUser.UserId);
 
-                //If CurrentAddress has information, add to address then add to cache
+                //if address is found in API
                 if (AddressServices.CurrentAddress is not null)
                 {
+                    //set address
                     address = AddressServices.CurrentAddress;
+
+                    //add user address to cache
                     await AddUserAddressToCache();
                 }
             }
