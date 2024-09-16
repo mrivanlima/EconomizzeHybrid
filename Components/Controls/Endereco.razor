@@ -17,6 +17,11 @@
     <EditForm FormName="AddAddress" Model="address" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
+        <InputText placeholder="CEP" @bind-Value="address.ZipCode" disabled="@isSubmitted" />
+        <div class="col">
+            <ValidationMessage For="() => address.ZipCode"></ValidationMessage>
+        </div>
+
         <InputText placeholder="Rua" @bind-Value="address.StreetName" disabled="@isSubmitted" />
         <div class="col">
             <ValidationMessage For="() => address.StreetName"></ValidationMessage>
@@ -154,7 +159,6 @@ else
                 address = AddressServices.CurrentAddress;
                 await AddUserAddressToCache();
             }
-
         }
     }
 }

@@ -64,18 +64,19 @@
             <ValidationMessage For="@(() => userModel.DateOfBirth)" />
         </div>
         <InputNumber hidden @bind-Value="userModel.UserId"></InputNumber>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-start align-items-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+                <p style="@(UserServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+            </span>
+        </div>
     </EditForm>
-    <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
-        <p>@message</p>
-    </div>
 </div>
 
 @code {
 
     private UserModel userModel = new();
     private UserLoginModel userLoginModel = new();
-    private string? userEmail { get; set; }
     private bool hideLoad = false;
     private bool hideContent = true;
     private String message = String.Empty;
@@ -93,6 +94,12 @@
         hideContent = false;
     }
 
+    private string GetStyle()
+    {
+        var color = UserServices.isError ? "background-color:#FF928D;" : "background-color:#8DFFB6;";
+        var display = isVisible ? "display:block;" : "display:none;";
+        return color + " " + display;
+    }
 
     private async Task HandleValidSubmit()
     {
@@ -126,6 +133,7 @@
         if (CacheServices.UserDetails is not null)
         {
             userModel = CacheServices.UserDetails;
+            userModel.UserEmail = UserLoginServices.CurrentUser.Username;
             UserServices.CurrentUserDetails = userModel;
         }
     }
@@ -138,6 +146,7 @@
             if (UserServices.CurrentUserDetails is not null)
             {
                 userModel = UserServices.CurrentUserDetails;
+                userModel.UserEmail = UserLoginServices.CurrentUser.Username;
                 await AddUserDetailsToCache();
             }
         }

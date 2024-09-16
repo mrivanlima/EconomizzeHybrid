@@ -7,6 +7,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         Task CreateUserAsync(UserModel userModel, string userToken);
         Task ReadAsyncById(int id);
         UserModel CurrentUserDetails { get; set; }
-        string Message { get; set; }
+        bool isError { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace EconomizzeHybrid.Services.Classes
 
 
         public CacheServices(ICacheFactory cacheFactory, 
-                                      MessageHandler messageHandler)
+                             MessageHandler messageHandler)
         {
             _messageHandler = messageHandler;
             _cacheFactory = cacheFactory;
@@ -105,10 +105,8 @@ namespace EconomizzeHybrid.Services.Classes
             }
             finally
             {
-
                 connection.Close();
             }
-            
         }
 
         public async Task ReadUserDetails(int userId)
@@ -143,10 +141,8 @@ namespace EconomizzeHybrid.Services.Classes
             }
             finally
             {
-
                 connection.Close();
             }
-
         }
 
         public async Task ReadAddress(int userId)
@@ -182,10 +178,8 @@ namespace EconomizzeHybrid.Services.Classes
             }
             finally
             {
-
                 connection.Close();
             }
-
         }
 
         public async Task AddUserDetails(UserModel model)
@@ -246,7 +240,6 @@ namespace EconomizzeHybrid.Services.Classes
             }
             finally
             {
-
                 connection.Close();
             }
         }
