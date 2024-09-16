@@ -20,6 +20,7 @@ namespace EconomizzeHybrid.Services.Classes
         public AddressModel? CurrentAddress { get; set; }
         public SearchZipCodeModel CurrentZipCode { get; set; }
         public string Message { get; set; }
+        public bool isError {  get; set; }
 
         public AddressServices(IHttpClientFactory httpClientFactory, MessageHandler messageHandler)
         {
@@ -32,6 +33,7 @@ namespace EconomizzeHybrid.Services.Classes
                 PropertyNameCaseInsensitive = true
             };
             Message = String.Empty;
+            isError = false;
         }
 
         public async Task SearchZipCodeAsync(SearchZipCodeModel currentZipCode)
@@ -50,6 +52,7 @@ namespace EconomizzeHybrid.Services.Classes
                 }
                 else
                 {
+                    isError = true;
                     CurrentAddress = null;
                     Message = jsonResponse.ToString();
                 }
@@ -102,6 +105,7 @@ namespace EconomizzeHybrid.Services.Classes
                 }
                 else
                 {
+                    isError = true;
                     CurrentAddress = null;
                     _messageHandler.Message = jsonResponse.ToString();
                 }
