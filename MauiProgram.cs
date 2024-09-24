@@ -47,6 +47,7 @@ namespace EconomizzeHybrid
             builder.Services.AddSingleton<IUserLoginServices,  UserLoginServices>();
             builder.Services.AddSingleton<CacheServices>();
             builder.Services.AddSingleton<IUserServices, UserServices>();
+            builder.Services.AddSingleton<IPasswordServices, PasswordServices>();
             builder.Services.AddSingleton(JsonSerializerOptions);
 
             builder.Services.AddScoped<IAddressServices, AddressServices>();

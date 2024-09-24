@@ -13,7 +13,7 @@
     <SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
     <hr />
 
-    <EditForm FormName="AddAddress" Model="address" OnValidSubmit="HandleValidSubmit">
+    <EditForm FormName="AddAddress" Model="@address" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
         <InputText placeholder="CEP" @bind-Value="address.ZipCode" disabled="@isSubmitted" />

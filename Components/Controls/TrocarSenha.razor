@@ -1,0 +1,42 @@
+﻿@attribute [StreamRendering]
+
+@inject IPasswordServices PasswordServices
+@inject IUserLoginServices UserLoginServices
+@inject NavigationManager NavigationManager
+@inject CacheServices CacheServices
+@inject MessageHandler MessageHandler
+
+@if (currentUser is not null)
+{
+    <h3>Trocar Senha</h3>
+
+    <EditForm FormName="UpdatePassword" Model="@password" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+
+        <InputText placeholder="Nova Senha" @bind-Value="password.NewPassword"/>
+        <div class="col">
+            <ValidationMessage For="@(() => password.NewPassword)"></ValidationMessage>
+        </div>
+
+        <InputText placeholder="Confirma Senha" @bind-Value="password.ConfirmPassword"/>
+        <div class="col">
+            <ValidationMessage For="@(() => password.ConfirmPassword)"></ValidationMessage>
+        </div>
+
+        <InputText placeholder="Atual Senha" @bind-Value="password.CurrentPassword"/>
+        <div class="col">
+            <ValidationMessage For="@(() => password.CurrentPassword)"></ValidationMessage>
+        </div>
+
+        <div class="d-flex justify-content-start align-items-center mt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+                <p style="@(PasswordServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+            </span>
+        </div>
+    </EditForm>
+}
+else
+{
+    <p>Loading...</p>
+}
