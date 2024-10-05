@@ -1,0 +1,50 @@
+﻿@page "/EsqueceuSenha"
+@inject IUserLoginServices UserLoginServices
+@inject IPasswordServices PasswordServices
+@inject UsernameService UsernameService
+@inject NavigationManager NavigationManager
+@inject MessageHandler MessageHandler
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h3 class="text-center">Nova Senha</h3>
+
+            @*  USERNAME FORM   *@
+            <EditForm hidden=@HideEmail Enhance Model="Username" FormName="Email" OnValidSubmit="SendEmailAsync">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <ValidationSummary></ValidationSummary>
+
+                @*  USERNAME FIELD  *@
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <InputText @bind-Value="@Username.username" class="form-control" placeholder="Email"></InputText>
+
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => Username.username"></ValidationMessage>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Enviar Email</button>
+                <hr>
+            </EditForm>
+            <br />
+
+            @*NAVIGATE TO PASSWORD CHANGE FORM*@
+            <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
+                <EditForm Model="forgotPassword" FormName="Verify" OnSubmit="Navigate">
+
+                    <button type="submit" class="btn btn-danger btn-block">
+                        <i class="fab fa-google"></i> @message
+                    </button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+

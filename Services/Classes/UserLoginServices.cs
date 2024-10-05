@@ -16,7 +16,8 @@ namespace EconomizzeHybrid.Services.Classes
         private IUserServices _userServices;
         public UserLoginModel? CurrentUser { get; set; }
         public RegisterModel? RegisteredUser { get; set; }
-        private  JsonSerializerOptions Options {get; set;}
+        public ForgotPasswordModel? PasswordDetails { get; set; }
+		private  JsonSerializerOptions Options {get; set;}
 
         private readonly NavService _navService;
 
@@ -40,7 +41,7 @@ namespace EconomizzeHybrid.Services.Classes
         public async Task ReadAsync(UserLoginModel user)
         {
             var url = "conta/autenticar";
-            
+
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("economizze");
@@ -49,7 +50,35 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentUser = JsonSerializer.Deserialize<UserLoginModel>(jsonResponse, Options);
-				}
+                }
+                else
+                {
+                    CurrentUser = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _messageHandler.Message = ex.Message;
+            }
+        }
+
+        public async Task ReadIdUuIdAsync(ForgotPasswordModel? forgotPassword)
+        {
+            var url = "conta/leer";
+
+            try
+            {
+                forgotPassword.NewPassword = "EconomizzeUserLoginModelPasswordPlaceholder";
+                forgotPassword.ConfirmPassword = "EconomizzeUserLoginModelPasswordPlaceholder";
+                var httpClient = _httpClientFactory.CreateClient("economizze");
+                var response = await httpClient.PostAsJsonAsync(url, forgotPassword);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    forgotPassword = JsonSerializer.Deserialize<ForgotPasswordModel>(jsonResponse, Options);
+                    PasswordDetails = forgotPassword;
+                }
                 else
                 {
                     CurrentUser = null;

@@ -59,53 +59,11 @@
             <NavLink href="Criar" class="nav-link d-flex justify-content-center" activeClass="active">
                 Novo Usuario? Criar!
             </NavLink>
+            <NavLink href="EsqueceuSenha" class="nav-link d-flex justify-content-center" activeClass="active">
+                Esqueceu sua senha?
+            </NavLink>
         </div>
     </div>
 </div>
 
-@code {
-    [SupplyParameterFromForm(FormName = "Login")]
-    private UserLoginModel userLogin { get; set; } = new();
-    private String message = String.Empty;
-    private bool isVisible = false;
-    private bool hideLoad = false;
-    private bool hideContent = true;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await Task.Delay(0);
-        hideLoad = true;
-        hideContent = false;
-    } 
-
-    private async Task LoginUserAsync()
-    {
-        await Task.Delay(0);
-        await FetchUser();
-        if (UserLoginServices.CurrentUser is not null)
-        {
-            userLogin = UserLoginServices.CurrentUser;
-            await CreateSession();
-            NavigationManager.NavigateTo("/");
-        }
-        else
-        {
-            message = MessageHandler.Message;
-            isVisible = true;
-        }
-    }
-
-    private async Task FetchUser()
-    {
-        await UserLoginServices.ReadAsync(userLogin);
-    }
-
-    private async Task CreateSession()
-    {
-        await Task.Delay(0);
-        if (UserLoginServices.CurrentUser is not null)
-        {
-            await CacheServices.CreateUserSession(userLogin);
-        }
-    }
-}
