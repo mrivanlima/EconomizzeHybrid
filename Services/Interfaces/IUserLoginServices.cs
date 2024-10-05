@@ -9,11 +9,13 @@ namespace EconomizzeHybrid.Services.Interfaces
 {
     public interface IUserLoginServices
     {
-        Task ReadAsync(UserLoginModel user);
-        Task VerifyAsync(RegisterModel register);
         UserLoginModel CurrentUser { get; set; }
         RegisterModel RegisteredUser { get; set; }
-        Task CreateAsync(RegisterModel register);
+		ForgotPasswordModel PasswordDetails { get; set; }
+		Task CreateAsync(RegisterModel register);
+        Task ReadIdUuIdAsync(ForgotPasswordModel user);
+        Task VerifyAsync(RegisterModel register);
+        Task ReadAsync(UserLoginModel user);
         Task LogOut();
     }
 }
