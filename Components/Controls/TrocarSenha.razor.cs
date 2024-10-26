@@ -9,7 +9,6 @@ namespace EconomizzeHybrid.Components.Controls
         #region VARIABLES
         private LoggedInPasswordModel? password = new();
         private UserLoginModel? currentUser { get; set; }
-        private bool isSubmitted = false;
         private String message = String.Empty;
         private bool isVisible = false;
         #endregion
@@ -22,7 +21,7 @@ namespace EconomizzeHybrid.Components.Controls
 
             //set passwordModel
             await Task.Delay(0);
-            password.UserId = UserLoginServices.CurrentUser.UserId;
+            password!.UserId = UserLoginServices.CurrentUser.UserId;
             password.CurrentPassword = UserLoginServices.CurrentUser.Password;
         }
         #endregion
@@ -42,7 +41,7 @@ namespace EconomizzeHybrid.Components.Controls
             }
 
             //function called to keep alert up for set amount of time
-            OnParametersSetAsync();
+            await OnParametersSetAsync();
         }
         #endregion
 
@@ -76,7 +75,7 @@ namespace EconomizzeHybrid.Components.Controls
         {
             //add updated password to the db
             await Task.Delay(0);
-            await PasswordServices.UpdatePasswordAsync(password, currentUser.UserToken);
+            await PasswordServices.UpdatePasswordAsync(password!, currentUser!.UserToken);
         }
         #endregion
     }

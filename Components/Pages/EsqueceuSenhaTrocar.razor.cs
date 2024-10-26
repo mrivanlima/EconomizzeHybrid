@@ -36,7 +36,7 @@ namespace EconomizzeHybrid.Components.Pages
             username = UsernameService.SharedUsername.username;
             ForgotPassword.Username = username;
 
-            ForgotPassword.UserId = int.Parse(UserId);
+            ForgotPassword.UserId = int.Parse(UserId!);
         }
         #endregion
 

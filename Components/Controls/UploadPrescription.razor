@@ -1,0 +1,265 @@
+﻿@page "/prescription-management"
+@inject IUserLoginServices UserLoginServices
+@inject IPrescriptionServices PrescriptionServices
+@inject IQuoteServices QuoteServices
+@inject MessageHandler MessageHandler
+@using EconomizzeHybrid.Components.Modal
+
+<h3>Prescription Managemet</h3>
+
+<!-- Form to add a new prescription -->
+<EditForm Model="@newPrescription" OnValidSubmit="SavePrescription">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <!-- File Upload for Prescription -->
+    <div>
+        <label for="prescriptionFile">Prescription File</label>
+        <InputFile OnChange="HandleFileSelected" class="form-control" style="width: auto;" accept=".png,.jpg,.jpeg" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(uploadedFileName))
+    {
+        <p>Uploaded File: @uploadedFileName</p>
+    }
+
+    <button class="btn btn-primary" disabled="@(!isFileSelected)">Submit Prescription</button>
+</EditForm>
+
+<hr />
+
+<!-- Display the list of prescriptions -->
+<h4>Prescriptions List</h4>
+@if (prescriptions.Count == 0)
+{
+    <p>No prescriptions added yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Created On</th>
+                <th>Prescription File</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prescription in prescriptions)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(prescription.Base64Image))
+                        {
+                            <img src="data:image/jpeg;base64,@prescription.Base64Image"
+                                 style="max-width: 150px; max-height: 150px; cursor: pointer;"
+                                 @onclick="(async () => await ShowImageModal(prescription.Base64Image))" />
+                        }
+                    </td>
+                    <td>@prescription.CreatedOn.ToShortDateString()</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeletePrescription(prescription.PrescriptionUnique)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Button to submit the files -->
+<button class="btn btn-success" @onclick="SubmitFiles" disabled="@(!prescriptions.Any())">Submit Files</button>
+
+@code {
+    // List to hold prescriptions
+    private List<PrescriptionModel> prescriptions = new List<PrescriptionModel>();
+
+    // Model for adding a new prescription
+    private PrescriptionModel newPrescription = new();
+
+    // Model for creating quote_prescription
+    private QuotePrescriptionModel quotePrescription = new();
+
+    // File upload properties
+    private IBrowserFile? selectedFile;
+    private string uploadedFileName = string.Empty;
+    private byte[]? fileData; // Byte array for the file data
+    private bool isFileSelected = false; // Manage submission
+
+    int UserId; // User Id of current logged in user
+
+    [CascadingParameter] IModalService? Modal { get; set; }
+
+    #region INITIALIZE
+    // Runs once on start
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(0);
+        UserId = UserLoginServices.CurrentUser.UserId;
+        newPrescription = InitializeNewPrescription();
+    }
+    #endregion
+
+    #region SET DEFAULT VALUES FOR NEW PRESCRIPTION
+    private PrescriptionModel InitializeNewPrescription()
+    {
+        return new PrescriptionModel
+        {
+            PrescriptionUnique = Guid.NewGuid(),
+            CreatedBy = UserId,
+            ModifiedBy = UserId,
+            CreatedOn = DateTime.Now,
+            ModifiedOn = DateTime.Now
+        };
+    }
+    #endregion
+
+    #region HANDLE CHOSEN FILE
+    // Handle file selection event
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File; // Store the current file
+        uploadedFileName = selectedFile.Name;
+        newPrescription.FileExtension = Path.GetExtension(uploadedFileName);
+        isFileSelected = true;
+
+        fileData = await ConvertToByteArrayAsync(selectedFile); // Write file in memory
+        newPrescription.ImageData = fileData; // Store file in prescription
+        newPrescription.Base64Image = Convert.ToBase64String(fileData);
+    }
+    #endregion
+
+    #region CONVERT IMAGE FILE TO A BYTE ARRAY
+    // Convert IBrowserFile to byte array
+    private async Task<byte[]> ConvertToByteArrayAsync(IBrowserFile browserFile)
+    {
+        const long maxFileSize = 1024 * 1024 * 5; //5mb
+        if (browserFile.Size > maxFileSize)
+        {
+            throw new InvalidOperationException(
+                "File size exceeds the maximum allowed size.");
+        }
+
+        byte[] bytesFile = new byte[browserFile.Size];
+
+        // Read the file into the byte array
+        using (var stream = browserFile.OpenReadStream(maxFileSize))
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                await stream.CopyToAsync(memoryStream);
+                bytesFile = memoryStream.ToArray(); // Convert the MemoryStream to a byte array
+            }
+        }
+
+        return bytesFile;
+    }
+    #endregion
+
+    #region ADD FILE INTO THE PRESCRIPTION LIST
+    // Save prescription logic (including file upload)
+    private async Task SavePrescription()
+    {
+        await Task.Delay(0);
+        if (selectedFile != null)
+        {
+            prescriptions.Add(newPrescription); // Add the new prescription to the list
+            newPrescription = InitializeNewPrescription(); // Reset the form for a new entry
+
+            // Reset file selection state
+            uploadedFileName = string.Empty;
+            isFileSelected = false;
+        }
+    }
+    #endregion
+
+    #region DELETE ELEMENT IN LIST
+    // Method to delete a prescription by its ID
+    private void DeletePrescription(Guid prescriptionUnique)
+    {
+        var prescriptionToRemove = prescriptions.FirstOrDefault(
+                                   p => p.PrescriptionUnique == prescriptionUnique);
+        if (prescriptionToRemove != null)
+        {
+            prescriptions.Remove(prescriptionToRemove);
+        }
+    }
+    #endregion
+
+    #region SUBMIT FILES TO STORAGE FOLDER AND DB
+    // Method to submit the files directly to the server folder
+    private async Task SubmitFiles()
+    {
+        foreach (var prescription in prescriptions)
+        {
+            var folderPath =
+            Path.Combine("C:\\Development\\EconomizzeHybrid\\Storage"!);
+
+            var newFileName =
+            Path.ChangeExtension(prescription.PrescriptionUnique.ToString(),
+                                 prescription.FileExtension);
+
+            prescription.PrescriptionUrl = newFileName;
+
+            var filePath =
+            Path.Combine(folderPath,
+                         newFileName);
+
+            await AddPrescriptionToDB(prescription);
+            await SetQuotePrescriptionValues();
+            await AddQuotePrescription(quotePrescription);
+
+            if (prescription.ImageData != null && !string.IsNullOrEmpty(prescription.PrescriptionUrl))
+            {
+                string relativePath = Path.Combine(newFileName);
+
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Save the file to the server folder
+                await File.WriteAllBytesAsync(
+                             filePath, 
+                             prescription.ImageData); // Use ImageData, not IBrowserFile
+            }
+        }
+    }
+    #endregion
+
+    #region ADD PRESCRIPTION TO DB
+    private async Task AddPrescriptionToDB(PrescriptionModel prescription)
+    {
+        await PrescriptionServices.CreatePrescriptionAsync(prescription);
+    }
+    #endregion
+
+    #region PREPARE QUOTE PRESCRIPTION
+    private async Task SetQuotePrescriptionValues()
+    {
+        await Task.Delay(0);
+
+        quotePrescription.QuoteId = QuoteServices.Quote.QuoteId;
+        quotePrescription.PrescriptionId = PrescriptionServices.Prescription.PrescriptionId;
+        quotePrescription.CreatedBy = UserId;
+        quotePrescription.ModifiedBy = UserId;
+    }
+    #endregion
+
+    #region ADD QUOTE PRESCRIPTION TO DB
+    private async Task AddQuotePrescription(QuotePrescriptionModel quotePrescriptionModel)
+    {
+        await PrescriptionServices.CreateQuotePrescriptionAsync(quotePrescriptionModel);
+    }
+    #endregion
+
+    #region MODAL
+    private async Task ShowImageModal(string image)
+    {
+        var parameters = new ModalParameters();
+        parameters.Add("image", image);
+
+        var imageModal = Modal!.Show<ImageModal>("Selected Prescription", parameters);
+        var result = await imageModal.Result;
+    }
+    #endregion
+}

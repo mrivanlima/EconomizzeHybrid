@@ -1,7 +1,6 @@
 ﻿@attribute [StreamRendering]
 
 @inject IAddressServices AddressServices
-@inject IAddressTypeServices AddressTypeServices
 @inject IUserLoginServices UserLoginServices
 @inject NavigationManager NavigationManager
 @inject CacheServices CacheServices
@@ -9,14 +8,21 @@
 
 @if (currentUser is not null)
 {
-    <h3>Address</h3>
+    @if (MainAddress)
+    {
+        <h3>Add Main Address</h3>
+    }
+    else
+    {
+        <h3>Enter New Address</h3>
+    }
     <SearchZipCode OnSuccess="HandleSuccess" OnFailure="HandleFailure"></SearchZipCode>
     <hr />
 
     <EditForm FormName="AddAddress" Model="@address" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
-        <InputText placeholder="CEP" @bind-Value="address.ZipCode" disabled="@isSubmitted" />
+        <InputText placeholder="CEP" @bind-Value="address!.ZipCode" disabled="@isSubmitted" />
         <div class="col">
             <ValidationMessage For="() => address.ZipCode"></ValidationMessage>
         </div>
@@ -42,22 +48,6 @@
         <InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
         <div class="col"></div>
 
-        <InputSelect id="addressType" @bind-Value="address.AddressTypeId" class="form-control" disabled="@isSubmitted">
-            <option value="0" selected>Selecione o tipo de endereco</option>
-            @if (addressTypesModel is not null)
-            {
-                @foreach (var addressType in addressTypesModel)
-                {
-                    <option value="@addressType.AddressTypeId">@addressType.AddressTypeName</option>
-                }
-            }
-        </InputSelect>
-        <div class="col">
-            <ValidationMessage For="() => address.AddressTypeId"></ValidationMessage>
-        </div>
-
-        <InputCheckbox @bind-Value="address.MainAddress"></InputCheckbox>
-
         <InputNumber hidden @bind-Value="address.UserId"></InputNumber>
         <InputNumber hidden @bind-Value="address.StreetId"></InputNumber>
         <InputNumber hidden @bind-Value="address.CreatedBy"></InputNumber>
@@ -74,4 +64,9 @@
 else
 {
     <p>Loading...</p>
+}
+
+@if(promptQuoteCreation)
+{
+    <QuoteCreate canCreateQuote="true"></QuoteCreate>
 }

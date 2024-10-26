@@ -3,7 +3,7 @@
 @inject NavigationManager NavigationManager
 
 
-<h3>Buscar Cep</h3>
+<h4>Buscar Cep</h4>
 
 @if (zipCode is not null)
 {
@@ -13,13 +13,14 @@
         <div class="col">
             <ValidationMessage For="() => zipCode.ZipCode"></ValidationMessage>
         </div>
-        <button type="submit" class="btn btn-primary">Buscar Cep</button>
-
+        <div class="d-flex justify-content-start align-items-center mt-3">
+            <button type="submit" class="btn btn-primary">Buscar Cep</button>
+            <span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+                <p style="@(AddressServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@Message</p>
+            </span>
+        </div>
     </EditForm>
     <br />
-    <div style="@(isVisible ? "display:block;" : "display:none;")" class="alert alert-warning" role="alert">
-        <p>@Message</p>
-    </div>
 }
 else
 {

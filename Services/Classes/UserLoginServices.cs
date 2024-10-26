@@ -102,11 +102,9 @@ namespace EconomizzeHybrid.Services.Classes
                 var jsonResponse = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-
-
                     RegisteredUser = JsonSerializer.Deserialize<RegisterModel>(jsonResponse, Options);
                     CurrentUser = new();
-                    CurrentUser.UserId = RegisteredUser.UserId;
+                    CurrentUser.UserId = RegisteredUser!.UserId;
                     CurrentUser.Username = RegisteredUser.Username;
                     CurrentUser.Password = RegisteredUser.Password;
                     //_navService.AddNavItem(new NavItemModel { Text = "Sair", Url = "login", Icon = "bi bi-box-arrow-right", IsVisible = true });
@@ -148,10 +146,10 @@ namespace EconomizzeHybrid.Services.Classes
             }
         }
 
-        public async Task LogOut()
+        public void LogOut()
         {
             CurrentUser = null;
-            _userServices.CurrentUserDetails = null;
+            _userServices.CurrentUserDetails = null!;
             _messageHandler.Message = string.Empty;
         }
     }

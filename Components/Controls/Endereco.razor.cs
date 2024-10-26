@@ -6,14 +6,16 @@ namespace EconomizzeHybrid.Components.Controls
 {
     public partial class Endereco
     {
-        #region VARIABLES
         private AddressModel? address = new();
         private UserLoginModel? currentUser { get; set; }
-        private bool isSubmitted = false;
-        private IEnumerable<AddressTypeModel>? addressTypesModel;
+
         private String message = String.Empty;
-        private bool isVisible = false;
-        #endregion
+
+        [Parameter]
+        public bool MainAddress { get; set; } = true;
+        private bool promptQuoteCreation = false;
+		private bool isSubmitted = false;
+		private bool isVisible = false;
 
         #region INITIALIZE
         protected override async Task OnInitializedAsync()
@@ -27,13 +29,12 @@ namespace EconomizzeHybrid.Components.Controls
                 NavigationManager.NavigateTo("login");
             }
 
-            //read all address types to supply the drop down menu
-            await AddressTypeServices.AddressTypeReadAll();
-            addressTypesModel = AddressTypeServices.AddressTypes;
-
             //search through cache and then API for any address already registered
-            await SearchAddressInCache();
-            await SearchAddressFromAPI();
+            if (MainAddress)
+            {
+                await SearchAddressInCache();
+                await SearchAddressFromAPI();
+            }
         }
         #endregion
 
@@ -42,7 +43,7 @@ namespace EconomizzeHybrid.Components.Controls
         {
             //if zip code is found, add all appropriate details to fields
             address = AddressServices.CurrentAddress;
-            address.UserId = currentUser.UserId;
+            address.UserId = currentUser!.UserId;
             address.CreatedBy = currentUser.UserId;
             address.ModifiedBy = currentUser.UserId;
         }
@@ -58,17 +59,28 @@ namespace EconomizzeHybrid.Components.Controls
             //if valid user with valid address filled
             if (address is not null && currentUser is not null)
             {
+                address.MainAddress = MainAddress;
                 //add address to API and then cache
                 await AddUserAddress();
-                await AddUserAddressToCache();
 
-                //display success / error message
-                message = MessageHandler.Message;
+                if(MainAddress)
+                {
+                    await AddUserAddressToCache();
+
+					//display success / error message
+					message = MessageHandler.Message;
+				}
+                else
+                {
+					promptQuoteCreation = true;
+					message = "endereco adicionado!";
+				}
+
                 isVisible = true;
             }
 
             //function called to keep alert up for set amount of time
-            OnParametersSetAsync();
+            await OnParametersSetAsync();
         }
         #endregion
 
@@ -102,7 +114,7 @@ namespace EconomizzeHybrid.Components.Controls
         {
             //add address to the API
             await Task.Delay(0);
-            await AddressServices.CreateUserAddressAsync(address);
+            await AddressServices.CreateUserAddressAsync(address!);
         }
 
         private async Task AddUserAddressToCache()
@@ -110,7 +122,7 @@ namespace EconomizzeHybrid.Components.Controls
             //if address have been properly added to API, add to cache
             if (AddressServices.CurrentAddress is not null)
             {
-                await CacheServices.AddUserAddress(address);
+                await CacheServices.AddUserAddress(address!);
             }
         }
         #endregion
@@ -119,8 +131,7 @@ namespace EconomizzeHybrid.Components.Controls
         private async Task SearchAddressInCache()
         {
             //search for any information to be pulled from cache
-            await Task.Delay(0);
-            await CacheServices.ReadAddress(currentUser.UserId);
+            await CacheServices.ReadAddress(currentUser!.UserId);
 
             //if any information is pulled, add to address fields on load
             if (CacheServices.UserAddress is not null)
@@ -136,7 +147,7 @@ namespace EconomizzeHybrid.Components.Controls
             if (AddressServices.CurrentAddress is null)
             {
                 //search though API for address
-                await AddressServices.ReadAsyncById(currentUser.UserId);
+                await AddressServices.ReadAsyncById(currentUser!.UserId);
 
                 //if address is found in API
                 if (AddressServices.CurrentAddress is not null)

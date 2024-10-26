@@ -1,0 +1,76 @@
+﻿@attribute [StreamRendering]
+
+@inject IUserLoginServices UserLoginServices
+@inject IQuoteServices QuoteServices
+@inject IAddressServices AddressServices
+@inject CacheServices CacheServices
+@inject NavigationManager NavigationManager
+@inject MessageHandler MessageHandler
+
+<h2>QuoteCreate</h2>
+
+@if (showEndereco)
+{
+	<Endereco MainAddress="false"></Endereco>
+}
+else if (!showEndereco || !canCreateQuote)
+{
+	<h5>Do you want to send quote to your main address?</h5>
+	<hr />
+	<EditForm FormName="AddAddress" Model="@address" OnValidSubmit="HandleValidSubmit">
+		<DataAnnotationsValidator></DataAnnotationsValidator>
+
+		<InputText disabled placeholder="CEP" @bind-Value="address.ZipCode" />
+		<div class="col">
+			<ValidationMessage For="() => address.ZipCode"></ValidationMessage>
+		</div>
+
+		<InputText disabled placeholder="Rua" @bind-Value="address.StreetName" />
+		<div class="col">
+			<ValidationMessage For="() => address.StreetName"></ValidationMessage>
+		</div>
+
+		<InputText disabled placeholder="Complemento" @bind-Value="address.Complement" />
+		<div class="col">
+			<ValidationMessage For="() => address.Complement"></ValidationMessage>
+		</div>
+
+		<InputText disabled placeholder="Bairro" @bind-Value="address.NeighborhoodName" />
+		<div class="col">
+			<ValidationMessage For="() => address.NeighborhoodName"></ValidationMessage>
+		</div>
+
+		<InputText disabled placeholder="Cidade" @bind-Value="address.CityName" />
+		<div class="col"></div>
+
+		<InputText disabled placeholder="Estado" @bind-Value="address.StateName" />
+		<div class="col"></div>
+
+		<InputNumber hidden @bind-Value="address.UserId"></InputNumber>
+		<InputNumber hidden @bind-Value="address.StreetId"></InputNumber>
+		<InputNumber hidden @bind-Value="address.CreatedBy"></InputNumber>
+		<InputNumber hidden @bind-Value="address.ModifiedBy"></InputNumber>
+
+		<div class="d-flex justify-content-start align-items-center mt-3">
+			<button type="submit" class="btn btn-primary" @onclick="UseMainAddress">Use My Main Address</button>
+			<span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+				<p style="@(AddressServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+			</span>
+
+			<span style="display:inline-block; width: 20px;"></span>
+
+			<button type="submit" class="btn btn-primary" @onclick="ShowEndereco">Use Other Address</button>
+			<span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+				<p style="@(AddressServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+			</span>
+		</div>
+	</EditForm>
+}
+
+@if(canCreateQuote)
+{
+	<div style="height: 8px;"></div>
+	<div>
+		<button type="submit" class="btn btn-primary" @onclick="CreateQuote">Create Quote</button>
+	</div>
+}

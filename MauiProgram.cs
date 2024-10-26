@@ -1,12 +1,11 @@
-﻿
-using EconomizzeHybrid.Model;
+﻿using Blazored.Modal;
 using EconomizzeHybrid.Services.Classes;
 using EconomizzeHybrid.Services.Components;
 using EconomizzeHybrid.Services.Interfaces;
 using EconomizzeHybrid.SqlLiteData;
-using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
 
 namespace EconomizzeHybrid
 {
@@ -30,6 +29,7 @@ namespace EconomizzeHybrid
 
 
             builder.Services.AddMauiBlazorWebView();
+            builder.Services.AddBlazoredModal();
 
             builder.Services.AddHttpClient("economizze", config =>
             {
@@ -46,13 +46,14 @@ namespace EconomizzeHybrid
 
             builder.Services.AddSingleton<IUserLoginServices,  UserLoginServices>();
             builder.Services.AddSingleton<CacheServices>();
-            builder.Services.AddSingleton<IUserServices, UserServices>();
-            builder.Services.AddSingleton<IPasswordServices, PasswordServices>();
+			builder.Services.AddSingleton<IUserServices, UserServices>();
+			builder.Services.AddSingleton<IQuoteServices, QuoteServices>();
+            builder.Services.AddSingleton <IPrescriptionServices, PrescriptionServices>();
+			builder.Services.AddSingleton<IPasswordServices, PasswordServices>();
             builder.Services.AddSingleton(JsonSerializerOptions);
 
             builder.Services.AddScoped<UsernameService>();
             builder.Services.AddScoped<IAddressServices, AddressServices>();
-            builder.Services.AddScoped<IAddressTypeServices, AddressTypeServices>();
 
             builder.Services.AddSingleton<NavService>();
 
