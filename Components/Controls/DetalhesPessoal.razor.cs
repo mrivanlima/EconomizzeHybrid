@@ -48,7 +48,7 @@ namespace EconomizzeHybrid.Components.Controls
             }
 
             //function called to keep alert up for set amount of time
-            OnParametersSetAsync();
+            await OnParametersSetAsync();
         }
         #endregion
 

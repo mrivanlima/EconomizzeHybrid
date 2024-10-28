@@ -23,10 +23,6 @@ namespace EconomizzeHybrid.Model
 
         public bool MainAddress { get; set; } = false;
 
-        [Required(ErrorMessage = "Escolha uma das opcoes")]
-        [Range(1, short.MaxValue, ErrorMessage = "Escolha um tipo de endereco")]
-        public short AddressTypeId { get; set; }
-
         public int UserId { get; set; }
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }

@@ -8,6 +8,7 @@ namespace EconomizzeHybrid.Services.Classes
     public class CacheServices : ICacheServices
     {
         private readonly ICacheFactory _cacheFactory;
+        private IAddressServices _addressServices;
         private readonly MessageHandler _messageHandler;
         public UserLoginModel? CurrentUser { get; set; }
         public UserModel? UserDetails { get; set; }
@@ -15,9 +16,11 @@ namespace EconomizzeHybrid.Services.Classes
 
 
         public CacheServices(ICacheFactory cacheFactory, 
+                             IAddressServices addressServices,
                              MessageHandler messageHandler)
         {
             _messageHandler = messageHandler;
+            _addressServices = addressServices;
             _cacheFactory = cacheFactory;
         }
 
@@ -160,7 +163,6 @@ namespace EconomizzeHybrid.Services.Classes
                             "NeighborhoodName, " +
                             "CityName, " +
                             "StateName, " +
-                            "AddressTypeId, " +
                             "MainAddress " +
                           "FROM Address " +
                           "WHERE UserId = @UserId " +
@@ -171,6 +173,7 @@ namespace EconomizzeHybrid.Services.Classes
                 };
 
                 UserAddress = await connection.QuerySingleOrDefaultAsync<AddressModel>(sql, parameters);
+                _addressServices.CurrentAddress = UserAddress!;
             }
             catch (Exception ex)
             {
@@ -259,7 +262,6 @@ namespace EconomizzeHybrid.Services.Classes
                                             "NeighborhoodName, " +
                                             "CityName, " +
                                             "StateName, " +
-                                            "AddressTypeId, " +
                                             "MainAddress)" +
                                        "VALUES (" +
                                            "@UserId, " +
@@ -270,7 +272,6 @@ namespace EconomizzeHybrid.Services.Classes
                                            "@NeighborhoodName, " +
                                            "@CityName, " +
                                            "@StateName, " +
-                                           "@AddressTypeId, " +
                                            "@MainAddress)" +
                                        "ON CONFLICT(UserId) DO UPDATE " +
                                        "SET StreetId = @StreetId, " +
@@ -280,7 +281,6 @@ namespace EconomizzeHybrid.Services.Classes
                                            "NeighborhoodName = @NeighborhoodName, " +
                                            "CityName = @CityName, " +
                                            "StateName = @StateName, " +
-                                           "AddressTypeId = @AddressTypeId, " +
                                            "MainAddress = @MainAddress";
 
 
@@ -294,7 +294,6 @@ namespace EconomizzeHybrid.Services.Classes
                     NeighborhoodName = model.NeighborhoodName,
                     CityName = model.CityName,
                     StateName = model.StateName,
-                    AddressTypeId = model.AddressTypeId,
                     MainAddress = model.MainAddress
                 };
 

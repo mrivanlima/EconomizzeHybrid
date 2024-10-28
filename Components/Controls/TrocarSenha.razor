@@ -13,17 +13,17 @@
     <EditForm FormName="UpdatePassword" Model="@password" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
 
-        <InputText placeholder="Nova Senha" @bind-Value="password.NewPassword"/>
+        <InputText type="password" placeholder="Nova Senha" @bind-Value="password!.NewPassword" />
         <div class="col">
             <ValidationMessage For="@(() => password.NewPassword)"></ValidationMessage>
         </div>
 
-        <InputText placeholder="Confirma Senha" @bind-Value="password.ConfirmPassword"/>
+        <InputText type="password" placeholder="Confirma Senha" @bind-Value="password.ConfirmPassword" />
         <div class="col">
             <ValidationMessage For="@(() => password.ConfirmPassword)"></ValidationMessage>
         </div>
 
-        <InputText placeholder="Atual Senha" @bind-Value="password.CurrentPassword"/>
+        <InputText type="password" placeholder="Atual Senha" @bind-Value="password.CurrentPassword" />
         <div class="col">
             <ValidationMessage For="@(() => password.CurrentPassword)"></ValidationMessage>
         </div>

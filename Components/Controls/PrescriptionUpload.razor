@@ -1,0 +1,214 @@
+﻿@page "/PrescriptionUpload"
+
+@inject IUserLoginServices UserLoginServices
+@inject IPrescriptionServices PrescriptionServices
+@inject IQuoteServices QuoteServices
+@inject NavigationManager NavigationManager
+@inject MessageHandler MessageHandler
+
+<h3>Prescription Upload</h3>
+
+@* <EditForm Model="prescription" OnValidSubmit="SubmitForm">
+	@for (int submittedFiles = 0; submittedFiles < numberOfUploadFields; submittedFiles++)
+	{
+		<div>
+			<label for="Submitted Prescription">Prescription</label>
+			<InputFile OnChange="@LoadFiles" class="form-control" multiple accept=".png,.jpg,.jpeg" />
+			<button type="button" class="btn btn-danger ml-2" @onclick="() => RemoveFileEntry(submittedFiles)">X</button>
+		</div>
+	}
+
+	<div class="d-flex justify-content-start align-items-center mt-3">
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+			<p style="@(PrescriptionServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@statusMessage</p>
+		</span>
+	</div>
+</EditForm> *@
+@* <EditForm Model="prescription" OnValidSubmit="SubmitForm">
+	<div>
+		<label for="Submitted Prescription">Prescription</label>
+		<InputFile OnChange="@LoadFiles" class="form-control" multiple accept=".png,.jpg,.jpeg" />
+		<button type="button" class="btn btn-danger ml-2" @onclick="() => RemoveFileEntry(submittedFiles)">X</button>
+	</div>
+
+	<div class="d-flex justify-content-start align-items-center mt-3">
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+			<p style="@(PrescriptionServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@statusMessage</p>
+		</span>
+	</div>
+</EditForm> *@
+
+
+@code {
+	// private List<PrescriptionModel> prescription = new();
+
+	// //status handling
+	// private string statusMessage = string.Empty;
+	// private bool isVisible = false;
+	// // //models to obtain necessary information
+	// // private PrescriptionModel prescription = new(); //form model
+	// // private QuotePrescriptionModel quotePrescription = new();
+	// // private UserLoginModel currentUser = new();
+
+	// // private List<IBrowserFile>? files; //list of all files being submitted
+	// // private List<Guid> guids = new(); //list of guids to assign to each file
+
+	// // private const long maxFileSize = 1024 * 1024 * 5; //5mb file size
+	// // private const int maxAllowedFiles = 1;
+	// // private int numberOfUploadFields = 1;
+
+	// // private long quoteId;
+	// // private long prescriptionId;
+
+	// // #region INITIALIZE
+	// // protected override async Task OnInitializedAsync()
+	// // {
+	// // 	await Task.Delay(0);
+
+	// // 	currentUser = UserLoginServices.CurrentUser;
+	// // 	prescription.CreatedBy = currentUser.UserId;
+	// // 	prescription.ModifiedBy = currentUser.UserId;
+
+	// // 	files = new List<IBrowserFile>();
+	// // }
+	// // #endregion
+
+	// // #region SUBMIT FILE(S)
+	// // private async Task SubmitForm()
+	// // {
+	// // 	int numberOfFiles = files!.Count;
+
+	// // 	for (int index = 0; index < numberOfFiles; index++)
+	// // 	{
+	// // 		prescription.PrescriptionUnique = guids[index];
+	// // 		try
+	// // 		{
+	// // 			string relativePath = await CaptureFile(files[index]);
+	// // 			prescription.PrescriptionUrl = relativePath;
+	// // 		}
+	// // 		catch (Exception ex)
+	// // 		{
+	// // 			throw;
+	// // 		}
+
+	// // 		await AddPrescriptionToDB();
+	// // 		await SetQuotePrescriptionValues();
+	// // 		await AddQuotePrescription(quotePrescription);
+	// // 	}
+
+	// // 	isVisible = true;
+	// // 	statusMessage = MessageHandler.Message;
+	// // }
+
+	// // private void LoadFiles(InputFileChangeEventArgs e)
+	// // {
+	// // 	AddGuid();
+	// // 	files!.Add(e.File);
+	// // 	numberOfUploadFields++;
+	// // 	StateHasChanged();
+	// // }
+	// // #endregion
+
+	// // #region CHANGE FILE NAME TO GUID AND ADD PATH
+	// // private async Task<string> CaptureFile(IBrowserFile file)
+	// // {
+	// // 	if (file is null)
+	// // 	{
+	// // 		return "";
+	// // 	}
+	// // 	try
+	// // 	{
+	// // 		string newFileName =
+	// // 		Path.ChangeExtension(prescription.PrescriptionUnique.ToString(),
+	// // 							Path.GetExtension(file.Name));
+
+	// // 		string filePath = 
+	// // 			Path.Combine("C:\\Development\\EconomizzeHybridStorage"!,
+	// // 						newFileName);
+
+	// // 		string relativePath = Path.Combine(newFileName);
+
+	// // 		await using FileStream fileStream = new(filePath, FileMode.Create);
+	// // 		await file.OpenReadStream(maxFileSize).CopyToAsync(fileStream);
+
+	// // 		return relativePath;
+	// // 	}
+	// // 	catch (Exception ex)
+	// // 	{
+	// // 		throw;
+	// // 	}
+	// // }
+	// // #endregion
+
+	// // #region ADD PRESCRIPTION TO DB
+	// // private async Task AddPrescriptionToDB()
+	// // {
+	// // 	await PrescriptionServices.CreatePrescriptionAsync(prescription);
+	// // 	prescriptionId = PrescriptionServices.Prescription.PrescriptionId;
+	// // }
+	// // #endregion
+
+	// // #region PREPARE QUOTE PRESCRIPTION
+	// // private async Task SetQuotePrescriptionValues()
+	// // {
+	// // 	await Task.Delay(0);
+
+	// // 	quoteId = QuoteServices.Quote.QuoteId;
+	// // 	quotePrescription.QuoteId = quoteId;
+	// // 	quotePrescription.PrescriptionId = prescriptionId;
+	// // 	quotePrescription.CreatedBy = currentUser.UserId;
+	// // 	quotePrescription.ModifiedBy = currentUser.UserId;
+	// // }
+	// // #endregion
+
+	// // #region ADD GUID
+	// // private void AddGuid()
+	// // {
+	// // 	var Unique = Guid.NewGuid();
+	// // 	guids.Add(Unique);
+	// // }
+	// // #endregion
+
+	// // private async Task RemoveFileEntry(int index)
+	// // {
+	// // 	await Task.Delay(0);
+	// // 	files!.RemoveAt(index - 2);
+	// // 	guids!.RemoveAt(index - 2);
+	// // 	numberOfUploadFields--;
+	// // 	StateHasChanged();
+	// // }
+
+	// // #region ADD QUOTE PRESCRIPTION TO DB
+	// // private async Task AddQuotePrescription(QuotePrescriptionModel quotePrescriptionModel)
+	// // {
+	// // 	await PrescriptionServices.CreateQuotePrescriptionAsync(quotePrescriptionModel);
+	// // }
+	// // #endregion
+
+	// #region STYLE
+	// private string GetStyle()
+	// {
+	// 	//if a submit error is detected, red background. If not then green
+	// 	var color = PrescriptionServices.isError ? "background-color:#FF928D;" : "background-color:#8DFFB6;";
+
+	// 	//display block on valid submit
+	// 	var display = isVisible ? "display:block;" : "display:none;";
+
+	// 	//return css string
+	// 	return color + " " + display;
+	// }
+
+	// protected override async Task OnParametersSetAsync()
+	// {
+	// 	//if block is visible, wait 7.5 seconds before hiding again
+	// 	if (isVisible)
+	// 	{
+	// 		await Task.Delay(7500);
+	// 		isVisible = false;
+	// 		StateHasChanged();
+	// 	}
+	// }
+	// #endregion
+}

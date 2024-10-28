@@ -15,7 +15,7 @@ namespace EconomizzeHybrid.Services.Classes
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public AddressModel? CurrentAddress { get; set; }
-        public SearchZipCodeModel CurrentZipCode { get; set; }
+        public SearchZipCodeModel? CurrentZipCode { get; set; }
         public string Message { get; set; }
 
         public UserAddressServices(IHttpClientFactory httpClientFactory, JsonSerializerOptions jsonSerializerOptions)

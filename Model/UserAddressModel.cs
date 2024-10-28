@@ -13,8 +13,6 @@ namespace EconomizzeHybrid.Model
 
         public int StreetId { get; set; }
 
-        public short AddressTypeId { get; set; }
-
         public string Complement { get; set; } = string.Empty;
 
         public bool MainAddress { get; set; } = false;

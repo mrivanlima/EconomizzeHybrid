@@ -10,15 +10,15 @@ namespace EconomizzeHybrid.SqlLiteData
     {
         private readonly string _connectionString;
         private IDbConnection _dbConnection;
-        private readonly string _assemblyDirectory;
+        private readonly string? _assemblyDirectory;
         private readonly string _dbPath;
         private readonly string _relativePath;
 
         public CacheConnection()
         {
-            _assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            _assemblyDirectory = AppContext.BaseDirectory;
             _relativePath = "DataCache\\UserInfo.db";
-            _dbPath = Path.Combine(_assemblyDirectory, _relativePath);
+            _dbPath = Path.Combine(_assemblyDirectory!, _relativePath);
             _connectionString = $"Data Source={_dbPath}";
             _dbConnection = new SqliteConnection(_connectionString);
         }

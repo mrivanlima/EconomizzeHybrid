@@ -16,6 +16,6 @@ namespace EconomizzeHybrid.Services.Interfaces
         Task ReadIdUuIdAsync(ForgotPasswordModel user);
         Task VerifyAsync(RegisterModel register);
         Task ReadAsync(UserLoginModel user);
-        Task LogOut();
+        void LogOut();
     }
 }

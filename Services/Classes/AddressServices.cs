@@ -18,7 +18,7 @@ namespace EconomizzeHybrid.Services.Classes
         private JsonSerializerOptions _jsonSerializerOptions;
 
         public AddressModel? CurrentAddress { get; set; }
-        public SearchZipCodeModel CurrentZipCode { get; set; }
+        public SearchZipCodeModel? CurrentZipCode { get; set; }
         public string Message { get; set; }
         public bool isError {  get; set; }
 
@@ -37,6 +37,7 @@ namespace EconomizzeHybrid.Services.Classes
 
         public async Task SearchZipCodeAsync(SearchZipCodeModel currentZipCode)
         {
+            isError = false;
             CurrentZipCode = currentZipCode;
             var url = $"endereco/{CurrentZipCode.ZipCode}";
 
@@ -48,6 +49,7 @@ namespace EconomizzeHybrid.Services.Classes
                 if (response.IsSuccessStatusCode)
                 {
                     CurrentAddress = JsonSerializer.Deserialize<AddressModel>(jsonResponse, _jsonSerializerOptions);
+                    Message = "Cep Encontrado!";
                 }
                 else
                 {

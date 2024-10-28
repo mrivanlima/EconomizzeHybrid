@@ -11,7 +11,7 @@ namespace EconomizzeHybrid.Components.Pages
         {
 
             await Task.Delay(100);
-            await UserLoginServices.LogOut();
+            UserLoginServices.LogOut();
             await CacheServices.LogOut();
             await NavService.RemoveNavItem("Sair");
             hideLoad = false;

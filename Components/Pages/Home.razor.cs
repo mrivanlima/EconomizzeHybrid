@@ -6,8 +6,8 @@ namespace EconomizzeHybrid.Components.Pages
 {
     public partial class Home
     {
-        private UserLoginModel? currentUser;
-        private UserModel? currentUserDetails;
+        private UserLoginModel? currentUser = new();
+        private UserModel? currentUserDetails = new();
 
         protected override async Task OnInitializedAsync()
         {
@@ -53,7 +53,7 @@ namespace EconomizzeHybrid.Components.Pages
         private async Task LogOut()
         {
             await NavService.RemoveNavItem("sair");
-            await UserLoginServices.LogOut();
+            UserLoginServices.LogOut();
             await CacheServices.LogOut();
 
         }
