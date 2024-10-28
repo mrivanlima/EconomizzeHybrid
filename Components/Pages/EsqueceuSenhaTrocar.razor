@@ -1,0 +1,60 @@
+﻿@page "/TrocarSenha/{UserId?}/{UserUniqueId?}"
+@inject IUserLoginServices UserLoginServices
+@inject IPasswordServices PasswordServices
+@inject IUserServices UserServices
+@inject UsernameService UsernameService
+@inject NavigationManager NavigationManager
+@inject MessageHandler MessageHandler
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <h3 class="text-center">Nova Senha</h3>
+
+            @*  FORGOT PASSWORD CHANGE FORM *@
+            <EditForm Enhance Model="ForgotPassword" FormName="PasswordChange" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <ValidationSummary></ValidationSummary>
+
+                @*  NEW PASSWORD FIELD  *@
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <InputText @bind-Value="@ForgotPassword.NewPassword" class="form-control" placeholder="Nova Senha"></InputText>
+
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => ForgotPassword.NewPassword"></ValidationMessage>
+                    </div>
+                </div>
+
+                @*  CONFIRM PASSWORD FIELD  *@
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <InputText @bind-Value="@ForgotPassword.ConfirmPassword" class="form-control" placeholder="Confirma Senha"></InputText>
+
+                    </div>
+                    <div class="col">
+                        <ValidationMessage For="() => ForgotPassword.ConfirmPassword"></ValidationMessage>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Trocar Senha</button>
+                <hr>
+
+                @*  ALERT BLOCK *@
+                <span style="@GetStyle()" class="alert alert-warning ml-3 mb-0" role="alert">
+                    @*  GREEN MESSAGE FOR SUCCESS, RED FOR ERROR |||| DISPLAY MESSAGE   *@
+                    <p style="@(PasswordServices.isError ? "color:#410E0E;" : "color:#0E4129;")">@message</p>
+                </span>
+            </EditForm>
+            <br />
+        </div>
+    </div>
+</div>
+
+

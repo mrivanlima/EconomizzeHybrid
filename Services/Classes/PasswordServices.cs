@@ -20,6 +20,7 @@ namespace EconomizzeHybrid.Services.Classes
         private JsonSerializerOptions options { get; set; }
         public bool isError { get; set; }
 
+        #region CONSTRUCTOR
         public PasswordServices(IHttpClientFactory httpClientFactory, MessageHandler messageHandler)
         {
             _httpClientFactory = httpClientFactory;
@@ -30,7 +31,9 @@ namespace EconomizzeHybrid.Services.Classes
                 PropertyNameCaseInsensitive = true
             };
         }
+        #endregion
 
+        #region Update password for logged in user
         public async Task UpdatePasswordAsync(LoggedInPasswordModel passwordModel, string userToken)
         {
             var url = $"conta/trocarSenha";
@@ -59,5 +62,35 @@ namespace EconomizzeHybrid.Services.Classes
                 _messageHandler.Message = ex.Message;
             }
         }
+        #endregion
+
+        #region Update password for user if forgot password
+        public async Task UpdateForgotPasswordAsync(ForgotPasswordModel forgotPasswordModel, string username)
+        {
+            var url = $"conta/trocarSenha/esqueceu";
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("economizze");
+                var response = await httpClient.PutAsJsonAsync(url, forgotPasswordModel);
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    isError = false;
+                    _messageHandler.Message = "Sucesso!";
+                }
+                else
+                {
+                    isError = true;
+                    _messageHandler.Message = jsonResponse.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                _messageHandler.Message = ex.Message;
+            }
+        }
+        #endregion
     }
 }
